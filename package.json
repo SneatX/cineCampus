@@ -1,0 +1,31 @@
+{
+  "name": "cinecampus",
+  "version": "1.0.0",
+  "description": "Examen de mongo II campusLands ",
+  "main": "main.js",
+  "scripts": {
+    "dev": "node --watch main.js",
+    "styles": "npx prettier --write src/**/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SneatX/cineCampus.git"
+  },
+  "keywords": [
+    "mongo",
+    "campus",
+    "node"
+  ],
+  "author": "SneatX",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SneatX/cineCampus/issues"
+  },
+  "homepage": "https://github.com/SneatX/cineCampus#readme",
+  "dependencies": {
+    "mongodb": "^6.8.0"
+  },
+  "devDependencies": {
+    "prettier": "^3.3.2"
+  }
+}

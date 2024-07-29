@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "Examen de mongo II campusLands ",
   "main": "main.js",
+  "type": "module",
   "scripts": {
-    "dev": "node --watch main.js",
+    "dev": "node --watch --env-file=.env main.js ",
     "styles": "npx prettier --write src/**/*.js"
   },
   "repository": {

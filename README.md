@@ -11,16 +11,19 @@
 3. **Compra de boletos**:
    - Permitir la compra de boletos para una película específica, incluyendo la selección de la fecha y la hora de la proyección.
 
-4. **Consulta de disponibilidad de asientos**:
+4. **Confirmación de Compra:** 
+   - Enviar confirmación de la compra y los detalles del boleto al usuario.
+
+5. **Consulta de disponibilidad de asientos**:
    - Permitir la consulta de la disponibilidad de asientos en una sala para una proyección específica.
 
-5. **Cancelación de reservas**:
+6. **Cancelación de reservas**:
    - Permitir la cancelación de una reserva de asiento ya realizada.
 
-6. **Aplicación de descuentos para usuarios VIP**:
+7. **Aplicación de descuentos para usuarios VIP**:
    - Permitir la aplicación de descuentos en la compra de boletos para usuarios con tarjeta VIP.
 
-7. **Verificación de tarjeta VIP**:
+8. **Verificación de tarjeta VIP**:
    - Permitir la verificación de la validez de una tarjeta VIP durante el proceso de compra.
 
 ## Roles

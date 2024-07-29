@@ -25,29 +25,41 @@ Cada módulo sigue esta estructura para mantener una separación clara de respon
 
 ## Casos de Uso
 
-1. **Consultar todas las películas disponibles**:
+1. **Crear Usuario**:
+   - Permitir la creación de nuevos usuarios en el sistema, asignando roles y privilegios específicos (usuario estándar, usuario VIP o administrador).
+
+2. **Consultar todas las películas disponibles**:
    - Permitir la consulta de todas las películas disponibles en el catálogo con detalles como título, género, duración y horarios de proyección.
 
-2. **Consultar información detallada sobre una película**:
+3. **Consultar información detallada sobre una película**:
    - Permitir la consulta de información detallada sobre una película específica, incluyendo sinopsis.
 
-3. **Compra de boletos**:
+4. **Compra de boletos**:
    - Permitir la compra de boletos para una película específica, incluyendo la selección de la fecha y la hora de la proyección.
-
-4. **Confirmación de Compra:** 
-   - Enviar confirmación de la compra y los detalles del boleto al usuario.
 
 5. **Consulta de disponibilidad de asientos**:
    - Permitir la consulta de la disponibilidad de asientos en una sala para una proyección específica.
 
-6. **Cancelación de reservas**:
+6. **Reservar asientos**:
+   - Permitir la selección y reserva de asientos para una proyección específica.
+
+7. **Cancelar reserva de asientos**:
    - Permitir la cancelación de una reserva de asiento ya realizada.
 
-7. **Aplicación de descuentos para usuarios VIP**:
+8. **Aplicación de descuentos para usuarios VIP**:
    - Permitir la aplicación de descuentos en la compra de boletos para usuarios con tarjeta VIP.
 
-8. **Verificación de tarjeta VIP**:
+9. **Verificación de tarjeta VIP**:
    - Permitir la verificación de la validez de una tarjeta VIP durante el proceso de compra.
+
+10. **API para Obtener Detalles de Usuario**: 
+    - Permitir la consulta de información detallada sobre un usuario, incluyendo su rol y estado de tarjeta VIP.
+
+11. **API para Actualizar Rol de Usuario**:
+    - Permitir la actualización del rol de un usuario (por ejemplo, cambiar de usuario estándar a VIP, o viceversa).
+
+12. **API para Listar Usuarios**: 
+    - Permitir la consulta de todos los usuarios del sistema, con la posibilidad de filtrar por rol (VIP, estándar o administrador).
 
 ## Roles
 

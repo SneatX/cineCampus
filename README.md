@@ -103,7 +103,7 @@ Cada módulo sigue esta estructura para mantener una separación clara de respon
     "_id": "ObjectId()",
     "titulo": "",
     "generos": [],
-    "duracion": "",
+    "duracion": 2.5,
     "sipnosis": ""
 }
 ```

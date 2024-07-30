@@ -23,4 +23,15 @@ export class ClientesRepository extends Connect {
         return res;
     }
 
+    async createNewUser(apodo, pwd, rol) {
+        const newUser = await this.db.command({
+            createUser: apodo,
+            pwd: pwd,
+            roles: [
+              { role: rol, db: this.db.databaseName }
+            ]
+        });
+
+        return newUser
+    }
 }

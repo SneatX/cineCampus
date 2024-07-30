@@ -138,6 +138,7 @@ Cada módulo sigue esta estructura para mantener una separación clara de respon
     "id_cliente": "ObjectId()",
     "fila": "",
     "columna": "",
-    "valor": "float"
+    "valor": "float",
+    "pago" : "bool"
 }
 ```

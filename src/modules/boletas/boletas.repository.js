@@ -1,4 +1,5 @@
 import { Connect } from "../../config/connnect.js";
+import { ClientesRepository } from "../clientes/clientes.repository.js";
 
 export class BoletasRepository extends Connect {
     static instance;
@@ -23,4 +24,8 @@ export class BoletasRepository extends Connect {
         return res;
     }
 
+    async aggregatenewBoleta(boleta){
+        let res = await this.collection.insertOne(boleta)
+        return res
+    }
 }

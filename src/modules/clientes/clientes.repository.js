@@ -23,6 +23,10 @@ export class ClientesRepository extends Connect {
         return res;
     }
 
+    async getClienteById(id){
+        let res = await this.collection.find({_id: new ObjectId()})
+    }
+
     async agreggateNewClient(object){
         let res = await this.collection.insertOne(object)
         return res

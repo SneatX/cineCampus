@@ -24,6 +24,11 @@ export class FuncionesRepository extends Connect {
         return res;
     }
 
+    async getFuncionById(id){
+        let [res] = await this.collection.find({_id: new ObjectId(id)}).toArray()
+        return res
+    }
+
     async getFuncionesByPeliculaId(idPelicula){
         let res = await this.collection.find({id_pelicula: new ObjectId(idPelicula)}).toArray()
         return res

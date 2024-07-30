@@ -15,11 +15,25 @@ export async function nuevoUsuario(infoCliente){
         if(infoCliente.id_tarjeta === cliente.id_tarjeta.toString()) return { resultado: "error", mensaje: "Tarjeta ya registrado anteriormente" }
     }
 
-    if(id_tarjeta){
+    if(ObjectId.isValid(id_tarjeta)){
         console.log("con tarjeta")
-        let newUserRes = await clientesCollection.createNewUser("OkamiSempai2", "188", "vip")
-    }else{
+        let newUserRes = await clientesCollection.createNewUser(nick, "1234", "vip")
+    }
+    else{
         console.log("sin tarjeta")
+        let newUserRes = await clientesCollection.createNewUser(nick, "1234", "estandar")
+        id_tarjeta = null
     }
 
+    let newClient = {
+        id_tarjeta : id_tarjeta,
+        nombre: nombre,
+        apellido: apellido,
+        nick: nick,
+        email: email,
+        telefono
+    }
+
+    let resClient = await clientesCollection.agreggateNewClient(newClient)
+    return resClient
 }

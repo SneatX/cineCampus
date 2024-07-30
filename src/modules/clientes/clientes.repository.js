@@ -23,6 +23,11 @@ export class ClientesRepository extends Connect {
         return res;
     }
 
+    async agreggateNewClient(object){
+        let res = await this.collection.insertOne(object)
+        return res
+    }
+
     async createNewUser(apodo, pwd, rol) {
         const newUser = await this.db.command({
             createUser: apodo,

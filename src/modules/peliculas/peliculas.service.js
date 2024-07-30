@@ -29,3 +29,16 @@ export async function verPelisCatalogo(){
 
     return peliculas
 }
+
+export async function verInformacionPelicula(idPelicula){
+    let peliculasCollection = new PeliculasRepository()
+    let funcionesCollection = new FuncionesRepository()
+
+    let pelicula = await peliculasCollection.getPeliculaById(idPelicula)
+    let funciones = await funcionesCollection.getFuncionesByPeliculaId(idPelicula)
+    let horarios = funciones = funciones.map(funcion =>{
+        return funcion.fecha_inicio
+    })
+    pelicula.horarios = horarios
+    return pelicula
+}

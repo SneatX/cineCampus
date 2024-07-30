@@ -1,4 +1,5 @@
 import { Connect } from "../../config/connnect.js";
+import { ObjectId } from "mongodb";
 
 export class FuncionesRepository extends Connect {
     static instance;
@@ -21,6 +22,11 @@ export class FuncionesRepository extends Connect {
     async getAllFunciones() {
         let res = await this.collection.find({}).toArray();
         return res;
+    }
+
+    async getFuncionesByPeliculaId(idPelicula){
+        let res = await this.collection.find({id_pelicula: new ObjectId(idPelicula)}).toArray()
+        return res
     }
 
 }

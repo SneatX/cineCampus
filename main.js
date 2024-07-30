@@ -1,5 +1,5 @@
 import { casoUso1 } from "./src/modules/clientes/clientes.controller.js";
-import { PeliculasRepository } from "./src/modules/peliculas/peliculas.repository.js";
+import { casoUso2 } from "./src/modules/peliculas/peliculas.controller.js";
 
-
-await casoUso1()
+// casoUso1()
+casoUso2()

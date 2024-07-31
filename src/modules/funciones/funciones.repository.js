@@ -1,5 +1,5 @@
-import { Connect } from "../../config/connnect.js";
-import { ObjectId } from "mongodb";
+import { Connect } from '../../config/connnect.js';
+import { ObjectId } from 'mongodb';
 
 export class FuncionesRepository extends Connect {
     static instance;
@@ -14,8 +14,8 @@ export class FuncionesRepository extends Connect {
     }
 
     /**
-     * 
-     * @param 
+     *
+     * @param
      * @returns Retorna un array con todos los elementos de la coleccion "funciones"
      */
 
@@ -25,59 +25,64 @@ export class FuncionesRepository extends Connect {
     }
 
     async getFuncionById(id) {
-        let [res] = await this.collection.find({ _id: new ObjectId(id) }).toArray()
-        return res
+        let [res] = await this.collection
+            .find({ _id: new ObjectId(id) })
+            .toArray();
+        return res;
     }
 
     async getFuncionesByPeliculaId(idPelicula) {
-        let res = await this.collection.find({ id_pelicula: new ObjectId(idPelicula) }).toArray()
-        return res
+        let res = await this.collection
+            .find({ id_pelicula: new ObjectId(idPelicula) })
+            .toArray();
+        return res;
     }
 
     async aggregateNewAsientoOcupado(idFuncion, asiento) {
         let res = await this.collection.updateOne(
-            { _id: new ObjectId(idFuncion)},
-            { $push: { asientosOcupados: asiento} }
+            { _id: new ObjectId(idFuncion) },
+            { $push: { asientosOcupados: asiento } }
         );
         return res;
     }
 
-    async deleteAsiento(idFuncion, asiento){
+    async deleteAsiento(idFuncion, asiento) {
         let res = await this.collection.updateOne(
             { _id: new ObjectId(idFuncion) },
             { $pull: { asientosOcupados: asiento } }
         );
-        return res
+        return res;
     }
 
     async getAsientosFuncion(id) {
-        let [res] = await this.collection.aggregate([
-            {
-                $match: {
-                    _id: new ObjectId(id)
+        let [res] = await this.collection
+            .aggregate([
+                {
+                    $match: {
+                        _id: new ObjectId(id)
+                    }
+                },
+                {
+                    $lookup: {
+                        from: 'salas',
+                        localField: 'id_sala',
+                        foreignField: '_id',
+                        as: 'sala_info'
+                    }
+                },
+                {
+                    $unwind: '$sala_info'
+                },
+                {
+                    $project: {
+                        _id: 0,
+                        asientosOcupados: 1,
+                        limitFila: '$sala_info.limitFila',
+                        limitCol: '$sala_info.limitCol'
+                    }
                 }
-            },
-            {
-                "$lookup": {
-                    "from": "salas",
-                    "localField": "id_sala",
-                    "foreignField": "_id",
-                    "as": "sala_info"
-                }
-            },
-            {
-                "$unwind": "$sala_info"
-            },
-            {
-                "$project": {
-                    "_id": 0,
-                    "asientosOcupados": 1,
-                    "limitFila": "$sala_info.limitFila",
-                    "limitCol": "$sala_info.limitCol"
-                }
-            }
-        ]).toArray()
-        return res
+            ])
+            .toArray();
+        return res;
     }
-
 }

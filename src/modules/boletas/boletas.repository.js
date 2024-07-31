@@ -1,5 +1,5 @@
-import { Connect } from "../../config/connnect.js";
-import { ObjectId } from "mongodb";
+import { Connect } from '../../config/connnect.js';
+import { ObjectId } from 'mongodb';
 
 export class BoletasRepository extends Connect {
     static instance;
@@ -14,8 +14,8 @@ export class BoletasRepository extends Connect {
     }
 
     /**
-     * 
-     * @param 
+     *
+     * @param
      * @returns Retorna un array con todos los elementos de la coleccion "boletas"
      */
 
@@ -24,18 +24,22 @@ export class BoletasRepository extends Connect {
         return res;
     }
 
-    async getBoletaById(idBoleta){
-        let [res] = await this.collection.find({_id: new ObjectId(idBoleta)}).toArray()
-        return res
+    async getBoletaById(idBoleta) {
+        let [res] = await this.collection
+            .find({ _id: new ObjectId(idBoleta) })
+            .toArray();
+        return res;
     }
 
-    async deleteBoletaById(idBoleta){
-        let res = await this.collection.deleteOne({_id: new ObjectId(idBoleta)})
-        return res
+    async deleteBoletaById(idBoleta) {
+        let res = await this.collection.deleteOne({
+            _id: new ObjectId(idBoleta)
+        });
+        return res;
     }
 
-    async aggregatenewBoleta(boleta){
-        let res = await this.collection.insertOne(boleta)
-        return res
+    async aggregatenewBoleta(boleta) {
+        let res = await this.collection.insertOne(boleta);
+        return res;
     }
 }

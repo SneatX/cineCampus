@@ -1,5 +1,5 @@
-import { Connect } from "../../config/connnect.js";
-import { ObjectId } from "mongodb";
+import { Connect } from '../../config/connnect.js';
+import { ObjectId } from 'mongodb';
 
 export class ClientesRepository extends Connect {
     static instance;
@@ -14,8 +14,8 @@ export class ClientesRepository extends Connect {
     }
 
     /**
-     * 
-     * @param 
+     *
+     * @param
      * @returns Retorna un array con todos los elementos de la coleccion "clientes"
      */
 
@@ -24,40 +24,44 @@ export class ClientesRepository extends Connect {
         return res;
     }
 
-    async getClienteById(id){
-        let [res] = await this.collection.find({_id: new ObjectId(id)}).toArray()
-        return res
-    }
-
-    async getClienteByNick(nick){
-        let [res] = await this.collection.find({nick: nick}).toArray()
-        return res
-    }
-
-    async getUsuarioByNick(nick){
-        let {users:[res]} = await this.db.command({ usersInfo: {user: nick, db: process.env.MONGO_DB} })
+    async getClienteById(id) {
+        let [res] = await this.collection
+            .find({ _id: new ObjectId(id) })
+            .toArray();
         return res;
     }
 
-    async getAllUsuarios(){
-        let {users: res} = await this.db.command({ usersInfo: 1 })
-        return res
+    async getClienteByNick(nick) {
+        let [res] = await this.collection.find({ nick: nick }).toArray();
+        return res;
     }
 
-    async agreggateNewClient(object){
-        let res = await this.collection.insertOne(object)
-        return res
+    async getUsuarioByNick(nick) {
+        let {
+            users: [res]
+        } = await this.db.command({
+            usersInfo: { user: nick, db: process.env.MONGO_DB }
+        });
+        return res;
+    }
+
+    async getAllUsuarios() {
+        let { users: res } = await this.db.command({ usersInfo: 1 });
+        return res;
+    }
+
+    async agreggateNewClient(object) {
+        let res = await this.collection.insertOne(object);
+        return res;
     }
 
     async createNewUser(apodo, pwd, rol) {
         const newUser = await this.db.command({
             createUser: apodo,
             pwd: pwd,
-            roles: [
-              { role: rol, db: this.db.databaseName }
-            ]
+            roles: [{ role: rol, db: this.db.databaseName }]
         });
 
-        return newUser
+        return newUser;
     }
 }

@@ -1,4 +1,5 @@
 import { Connect } from "../../config/connnect.js";
+import { ObjectId } from "mongodb";
 
 export class ClientesRepository extends Connect {
     static instance;
@@ -24,7 +25,8 @@ export class ClientesRepository extends Connect {
     }
 
     async getClienteById(id){
-        let res = await this.collection.find({_id: new ObjectId()})
+        let [res] = await this.collection.find({_id: new ObjectId(id)}).toArray()
+        return res
     }
 
     async agreggateNewClient(object){

@@ -1,4 +1,5 @@
 import { nuevoUsuario } from "./clientes.service.js";
+import { getDetallesUsuario } from "./clientes.service.js";
 
 export async function casoUso1(){
     let nuevoCliente = {
@@ -10,5 +11,12 @@ export async function casoUso1(){
         id_tarjeta: "sd"
     }
     let res = await nuevoUsuario(nuevoCliente)   
+    console.log(res)
+}
+
+export async function casoUso10(){
+    let nick = "SneatX"
+
+    let res = await getDetallesUsuario(nick)
     console.log(res)
 }

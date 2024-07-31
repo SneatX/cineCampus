@@ -29,6 +29,16 @@ export class ClientesRepository extends Connect {
         return res
     }
 
+    async getClienteByNick(nick){
+        let [res] = await this.collection.find({nick: nick}).toArray()
+        return res
+    }
+
+    async getUsuarioByNick(nick){
+        let {users:[res]} = await this.db.command({ usersInfo: {user: nick, db: process.env.MONGO_DB} })
+        return res;
+    }
+
     async agreggateNewClient(object){
         let res = await this.collection.insertOne(object)
         return res

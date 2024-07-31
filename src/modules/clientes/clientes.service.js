@@ -37,3 +37,15 @@ export async function nuevoUsuario(infoCliente){
     let resClient = await clientesCollection.agreggateNewClient(newClient)
     return resClient
 }
+
+export async function getDetallesUsuario(nickDeseado){
+    let clientesCollection = new ClientesRepository()
+
+    let cliente = await clientesCollection.getClienteByNick(nickDeseado)
+    let usuario = await clientesCollection.getUsuarioByNick(nickDeseado)
+
+    return {
+        ...cliente,
+        ...usuario
+    }
+}

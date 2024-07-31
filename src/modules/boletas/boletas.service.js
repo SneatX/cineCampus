@@ -36,7 +36,7 @@ export async function comprarBoleta(idFuncion, idCliente, asiento, pago){
     if(infoSala.asientosOcupados.includes(asiento)) return { resultado: "error", mensaje: "Asiento ocupado" }
 
     //Validar que se ingreso con la cuenta del usuario
-    //if(!cliente.nick != process.env.MONGO_USER) return { resultado: "error", mensaje: "No inicio sesion con la cuenta del usuario a comprar" }
+    if(cliente.nick != process.env.MONGO_USER) return { resultado: "error", mensaje: "No inicio sesion con la cuenta del usuario a comprar" }
 
     //Calcular valor boleta validando
     let precio = funcion.precio

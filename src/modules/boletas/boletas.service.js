@@ -64,3 +64,27 @@ export async function comprarBoleta(idFuncion, idCliente, asiento, pago){
     let resBoleta = await boletaCollection.aggregatenewBoleta(newBoleta)
     return resBoleta
 }
+
+export async function cancelarReserva(idBoleta){
+    let boletasCollection = new BoletasRepository()
+    let funcionesCollection = new FuncionesRepository()
+
+    //Validar existencia boleta
+    let boleta = await boletasCollection.getBoletaById(idBoleta)
+    if(!boleta) return { resultado: "error", mensaje: "Id de la boleta invalida" }
+
+    //validar que no sea paga la boleta
+    if(boleta.pago) return { resultado: "error", mensaje: "Boleta paga, no puede ser cancelada" }
+
+    //Eliminar boleta 
+    let boletaEliminada = await boletasCollection.deleteBoletaById(idBoleta)
+
+    //Eliminar asiento ocupado de la funcion
+    let asiento = `${boleta.fila}${boleta.columna}`
+    let asientoEliminado = await funcionesCollection.deleteAsiento(boleta.id_funcion.toString(), asiento)
+    return {
+        boleta_eliminada: idBoleta,
+        asiento: asiento,
+        funcion: boleta.id_funcion.toString()
+    }
+}

@@ -42,6 +42,14 @@ export class FuncionesRepository extends Connect {
         return res;
     }
 
+    async deleteAsiento(idFuncion, asiento){
+        let res = await this.collection.updateOne(
+            { _id: new ObjectId(idFuncion) },
+            { $pull: { asientosOcupados: asiento } }
+        );
+        return res
+    }
+
     async getAsientosFuncion(id) {
         let [res] = await this.collection.aggregate([
             {

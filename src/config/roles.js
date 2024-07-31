@@ -11,7 +11,7 @@ db.createRole({
         },
         {
             resource: { db: 'cineCampus', collection: 'funciones' },
-            actions: ['find']
+            actions: ['find', 'insert', 'update', 'remove']
         },
         {
             resource: { db: 'cineCampus', collection: 'peliculas' },
@@ -42,7 +42,7 @@ db.createRole({
         },
         {
             resource: { db: 'cineCampus', collection: 'funciones' },
-            actions: ['find']
+            actions: ['find', 'insert', 'update', 'remove']
         },
         {
             resource: { db: 'cineCampus', collection: 'peliculas' },

@@ -48,19 +48,19 @@ export async function comprarBoleta(idFuncion, idCliente, asiento, pago){
         if(resTarjeta){
             precio -= 2000
         }
-    }   
-
-    console.log(precio)
+    }
 
     //Actualizacion de asientos ocupados y creacion de la boleta
-    //let resAsientos = await funcionesCollection.aggregateNewAsientoOcupado(idFuncion, asiento)
-    /*
+    let resAsientos = await funcionesCollection.aggregateNewAsientoOcupado(idFuncion, asiento)
+
     let newBoleta = {
         id_funcion: new ObjectId(idFuncion),
         id_cliente: new ObjectId(idCliente),
         fila: filaDeseada,
         columna: columnaDeseada,
+        valor: precio,
+        pago: pago
     }
     let resBoleta = await boletaCollection.aggregatenewBoleta(newBoleta)
-    */
+    return resBoleta
 }

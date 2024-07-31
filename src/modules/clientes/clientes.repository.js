@@ -39,6 +39,11 @@ export class ClientesRepository extends Connect {
         return res;
     }
 
+    async getAllUsuarios(){
+        let {users: res} = await this.db.command({ usersInfo: 1 })
+        return res
+    }
+
     async agreggateNewClient(object){
         let res = await this.collection.insertOne(object)
         return res

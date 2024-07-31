@@ -49,3 +49,9 @@ export async function getDetallesUsuario(nickDeseado){
         ...usuario
     }
 }
+
+export async function getAllUsuarios(){
+    let clientesCollection = new ClientesRepository()
+    let res = await clientesCollection.getAllUsuarios()
+    return res
+}

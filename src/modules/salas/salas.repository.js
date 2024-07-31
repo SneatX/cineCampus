@@ -1,4 +1,4 @@
-import { Connect } from "../../config/connnect.js";
+import { Connect } from '../../config/connnect.js';
 
 export class SalasRepository extends Connect {
     static instance;
@@ -13,8 +13,8 @@ export class SalasRepository extends Connect {
     }
 
     /**
-     * 
-     * @param 
+     *
+     * @param
      * @returns Retorna un array con todos los elementos de la coleccion "salas"
      */
 
@@ -22,5 +22,4 @@ export class SalasRepository extends Connect {
         let res = await this.collection.find({}).toArray();
         return res;
     }
-
 }

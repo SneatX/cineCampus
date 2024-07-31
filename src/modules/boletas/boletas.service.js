@@ -8,6 +8,7 @@ export async function comprarBoleta(idFuncion, idCliente, asiento, pago){
     let funcionesCollection = new FuncionesRepository()
     let clientesCollection = new ClientesRepository()
     let boletaCollection = new BoletasRepository()
+    let tarjetasCollection = new TarjetasRepository()
 
     //Validacion existencia de funcion y cliente
     let funcion = await funcionesCollection.getFuncionById(idFuncion)
@@ -40,8 +41,16 @@ export async function comprarBoleta(idFuncion, idCliente, asiento, pago){
     //Calcular valor boleta validando
     let precio = funcion.precio
 
-        //Revisar validez de tarjeta
+    //Revisar validez de tarjeta - Caso de uso 8 y 9
+    let idTarjeta = cliente.id_tarjeta
+    if(idTarjeta){
+        let resTarjeta = await tarjetasCollection.getTarjetaById(idTarjeta)
+        if(resTarjeta){
+            precio -= 2000
+        }
+    }   
 
+    console.log(precio)
 
     //Actualizacion de asientos ocupados y creacion de la boleta
     //let resAsientos = await funcionesCollection.aggregateNewAsientoOcupado(idFuncion, asiento)

@@ -22,7 +22,7 @@ export async function casoUso10() {
     console.log(res);
 }
 
-export async function casoUso11() {
+export async function casoUso12() {
     let res = await getAllUsuarios();
     console.log(res);
 }

@@ -1,5 +1,14 @@
 import { FuncionesRepository } from './funciones.repository.js';
 
+
+/**
+ * Obtiene la disponibilidad de asientos para una función de cine.
+ * 
+ * @param {string} idFuncion - El ID de la función.
+ * @returns {Object} - Retorna un objeto con los asientos disponibles y un mensaje.
+ * @returns {Array} retorno.asientos_libres - Array con los asientos libres para la función.
+ * @returns {string} retorno.mensaje - Mensaje descriptivo sobre el estado de la operación.
+ */
 export async function verDisponibilidadAsientos(idFuncion) {
     let funcionesCollection = new FuncionesRepository();
 

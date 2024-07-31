@@ -1,6 +1,16 @@
 import { FuncionesRepository } from '../funciones/funciones.repository.js';
 import { PeliculasRepository } from './peliculas.repository.js';
 
+
+/**
+ * Obtiene el catálogo de películas en cartelera.
+ * 
+ * @returns {Array} - Retorna un array de objetos, cada uno representando una película en cartelera con sus horarios.
+ * @returns {string} retorno[].titulo - El título de la película.
+ * @returns {Array} retorno[].generos - Los géneros de la película.
+ * @returns {number} retorno[].duracion - La duración de la película en horas.
+ * @returns {Array} retorno[].horarios - Los horarios de las funciones de la película.
+ */
 export async function verPelisCatalogo() {
     let peliculasCollection = new PeliculasRepository();
     let funcionesCollection = new FuncionesRepository();
@@ -32,6 +42,17 @@ export async function verPelisCatalogo() {
 
     return peliculas;
 }
+
+/**
+ * Obtiene la información detallada de una película específica.
+ * 
+ * @param {string} idPelicula - El ID de la película.
+ * @returns {Object} - Retorna un objeto con la información de la película.
+ * @returns {string} retorno.titulo - El título de la película.
+ * @returns {Array} retorno.generos - Los géneros de la película.
+ * @returns {number} retorno.duracion - La duración de la película en horas.
+ * @returns {Array} retorno.horarios - Los horarios de las funciones de la película.
+ */
 
 export async function verInformacionPelicula(idPelicula) {
     let peliculasCollection = new PeliculasRepository();

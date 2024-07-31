@@ -4,6 +4,18 @@ import { BoletasRepository } from './boletas.repository.js';
 import { TarjetasRepository } from '../tarjetas/tarjetas.repository.js';
 import { ObjectId } from 'mongodb';
 
+
+/**
+ * Compra una boleta para una función de cine.
+ * 
+ * @param {string} idFuncion - El ID de la función.
+ * @param {string} idCliente - El ID del cliente.
+ * @param {string} asiento - El asiento deseado en formato "FilaColumna" (e.g., "A10").
+ * @param {boolean} pago - Indica si la boleta ha sido pagada.
+ * @returns {Object} - Retorna un objeto con el resultado de la operación.
+ * @returns {string} resultado - El resultado de la operación ('exito' o 'error').
+ * @returns {string} mensaje - Mensaje asociado con el resultado.
+ */
 export async function comprarBoleta(idFuncion, idCliente, asiento, pago) {
     let funcionesCollection = new FuncionesRepository();
     let clientesCollection = new ClientesRepository();
@@ -80,6 +92,15 @@ export async function comprarBoleta(idFuncion, idCliente, asiento, pago) {
     return resBoleta;
 }
 
+
+/**
+ * Cancela una reserva de boleta.
+ * 
+ * @param {string} idBoleta - El ID de la boleta.
+ * @returns {Object} - Retorna un objeto con el resultado de la operación.
+ * @returns {string} resultado - El resultado de la operación ('exito' o 'error').
+ * @returns {string} mensaje - Mensaje asociado con el resultado.
+ */
 export async function cancelarReserva(idBoleta) {
     let boletasCollection = new BoletasRepository();
     let funcionesCollection = new FuncionesRepository();

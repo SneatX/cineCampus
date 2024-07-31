@@ -1,6 +1,21 @@
 import { ClientesRepository } from './clientes.repository.js';
 import { ObjectId } from 'mongodb';
 
+/**
+ * Crea un nuevo usuario en la base de datos.
+ * 
+ * @param {Object} infoCliente - Información del cliente.
+ * @param {string} infoCliente.nombre - Nombre del cliente.
+ * @param {string} infoCliente.apellido - Apellido del cliente.
+ * @param {string} infoCliente.nick - Nickname del cliente.
+ * @param {string} infoCliente.email - Correo electrónico del cliente.
+ * @param {string} infoCliente.telefono - Teléfono del cliente.
+ * @param {string} infoCliente.id_tarjeta - ID de la tarjeta del cliente (puede ser null).
+ * @returns {Object} - Retorna un objeto con el resultado de la operación.
+ * @returns {string} resultado - El resultado de la operación ('exito' o 'error').
+ * @returns {string} mensaje - Mensaje asociado con el resultado (por ejemplo, 'Email ya registrado anteriormente').
+ */
+
 export async function nuevoUsuario(infoCliente) {
     let { nombre, apellido, nick, email, telefono, id_tarjeta } = infoCliente;
     let clientesCollection = new ClientesRepository();
@@ -57,6 +72,13 @@ export async function nuevoUsuario(infoCliente) {
     return resClient;
 }
 
+
+/**
+ * Obtiene los detalles de un usuario específico.
+ * 
+ * @param {string} nickDeseado - Nickname del usuario deseado.
+ * @returns {Object} - Retorna un objeto con los detalles del cliente y usuario.
+ */
 export async function getDetallesUsuario(nickDeseado) {
     let clientesCollection = new ClientesRepository();
 
@@ -69,6 +91,12 @@ export async function getDetallesUsuario(nickDeseado) {
     };
 }
 
+
+/**
+ * Obtiene una lista de todos los usuarios.
+ * 
+ * @returns {Array} - Retorna un array con todos los usuarios.
+ */
 export async function getAllUsuarios() {
     let clientesCollection = new ClientesRepository();
     let res = await clientesCollection.getAllUsuarios();

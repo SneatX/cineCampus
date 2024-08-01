@@ -17,8 +17,18 @@ import { ObjectId } from 'mongodb';
  */
 
 export async function nuevoUsuario(infoCliente) {
-    let { nombre, apellido, nick, email, telefono, id_tarjeta } = infoCliente;
+    let { nombre, apellido, nick, email, telefono, id_tarjeta, admin } = infoCliente;
     let clientesCollection = new ClientesRepository();
+
+    if(admin){
+        let newAdmin = await clientesCollection.createNewUser(
+            nick,
+            '1878',
+            'admin',
+            "admin"
+        );
+        return newAdmin
+    }
 
     //Validar que no existan datos importantes repetidos
     let clientes = await clientesCollection.getAllClientes();
@@ -53,14 +63,16 @@ export async function nuevoUsuario(infoCliente) {
         let newUserRes = await clientesCollection.createNewUser(
             nick,
             '1234',
-            'vip'
+            'vip',
+            "cineCampus"
         );
     } else {
         console.log('sin tarjeta');
         let newUserRes = await clientesCollection.createNewUser(
             nick,
             '1234',
-            'estandar'
+            'estandar',
+            "cineCampus"
         );
         id_tarjeta = null;
     }
@@ -107,4 +119,11 @@ export async function getAllUsuarios() {
     let clientesCollection = new ClientesRepository();
     let res = await clientesCollection.getAllUsuarios();
     return res;
+}
+
+export async function cambiarRol(nick, nuevoRol){
+    let clientesCollection = new ClientesRepository()
+
+    let res = await clientesCollection.changeRole(nick, nuevoRol)
+    return res
 }

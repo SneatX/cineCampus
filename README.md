@@ -130,7 +130,7 @@ Este proyecto sigue una estructura modular que facilita la organización y mante
     - Permitir la consulta de información detallada sobre un usuario, incluyendo su rol y estado de tarjeta VIP.
     - `casoUso10()`
 
-11. **API para Actualizar Rol de Usuario**:
+11. **Actualizar Rol de Usuario**:
     - Permitir la actualización del rol de un usuario (por ejemplo, cambiar de usuario estándar a VIP, o viceversa).
        - `casoUso1()`: Implicito al crear usuario
 12. **Listar Usuarios**: 
@@ -151,9 +151,9 @@ Este proyecto sigue una estructura modular que facilita la organización y mante
 ## Variables de entorno
 
 `
-MONGO_USER = (Usuario el con el cual desea ingresar)
+MONGO_USER = admin (Usuario el con el cual desea ingresar) 
 MONGO_PORT = 12854
-MONGO_PWD = (Contraseña del usuario, para efectos practicos todos los clientes tienen 1234 de pwd)
+MONGO_PWD = 1878 (Contraseña del usuario, para efectos practicos todos los clientes tienen 1234 de pwd) 
 MONGO_HOST = mongodb://
 MONGO_CLUSTER = monorail.proxy.rlwy.net
 MONGO_DB = cineCampus

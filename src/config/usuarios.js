@@ -1,5 +1,5 @@
 db.createUser({
-    user: 'admin_cinema',
+    user: 'admin1',
     pwd: '1878',
     roles: [
         { role: 'dbAdmin', db: 'cineCampus' },

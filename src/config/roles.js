@@ -59,3 +59,15 @@ db.createRole({
     ],
     roles: []
 });
+
+db.createRole({
+    role: 'admin',
+    privileges: [],
+    roles: [
+        { role: 'dbAdmin', db: 'cineCampus' },
+        { role: 'userAdmin', db: 'cineCampus' },
+        { role: 'readWrite', db: 'cineCampus' },
+        { role: 'userAdminAnyDatabase', db: 'admin' },
+        { role: 'dbAdminAnyDatabase', db: 'admin' }
+    ]
+});

@@ -55,13 +55,31 @@ export class ClientesRepository extends Connect {
         return res;
     }
 
-    async createNewUser(apodo, pwd, rol) {
+    async createNewUser(apodo, pwd, rol, dbName) {
         const newUser = await this.db.command({
             createUser: apodo,
             pwd: pwd,
-            roles: [{ role: rol, db: this.db.databaseName }]
+            roles: [{ role: rol, db: dbName }]
         });
 
         return newUser;
+    }
+
+    async changeRole(nick, newRole){
+        let {users: [user]} = await this.db.command({ usersInfo: { user: nick, db: 'cineCampus' } });
+        let roles = user.roles
+
+        let revoke = await this.db.command({
+            revokeRolesFromUser: nick,
+            roles: [{ role: roles[0].role, db: 'cineCampus' }]
+        })
+
+        let added = await this.db.command({
+            grantRolesToUser: nick,
+            roles: [{ role: newRole, db: 'cineCampus' }]
+        })
+
+        let {users: [newUser]} = await this.db.command({ usersInfo: { user: nick, db: 'cineCampus' } });
+        return newUser
     }
 }

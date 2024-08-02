@@ -132,7 +132,7 @@ Este proyecto sigue una estructura modular que facilita la organización y mante
 
 11. **Actualizar Rol de Usuario**:
     - Permitir la actualización del rol de un usuario (por ejemplo, cambiar de usuario estándar a VIP, o viceversa).
-       - `casoUso1()`: Implicito al crear usuario
+       - `casoUso11()`
 12. **Listar Usuarios**: 
     - Permitir la consulta de todos los usuarios del sistema, con la posibilidad de filtrar por rol (VIP, estándar o administrador).
     - `casoUso12()`

@@ -7,7 +7,7 @@ import { casoUso5 } from "./src/modules/funciones/funciones.controller.js";
 //casoUso1()
 
 // Consultar todas las películas disponibles
-// casoUso2()
+//casoUso2()
 
 // Consultar información detallada sobre una película
 //casoUso3()
@@ -25,7 +25,7 @@ import { casoUso5 } from "./src/modules/funciones/funciones.controller.js";
 //casoUso10()
 
 // Actualizar Rol de Usuario
-casoUso11()
+//casoUso11()
 
 // Listar Usuarios
-// casoUso12()
+//casoUso12()

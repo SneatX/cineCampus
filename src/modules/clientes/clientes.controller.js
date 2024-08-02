@@ -4,11 +4,11 @@ import { getAllUsuarios } from './clientes.service.js';
 
 export async function casoUso1() {
     let nuevoCliente = {
-        nombre: 'Santiago',
-        apellido: 'Ospina',
-        nick: 'sneatx',
-        email: 'santi02005@hotmail.com',
-        telefono: '1234567890',
+        nombre: '',
+        apellido: '',
+        nick: '',
+        email: '',
+        telefono: '',
         id_tarjeta: '',
         admin: false
     };
@@ -17,7 +17,7 @@ export async function casoUso1() {
 }
 
 export async function casoUso10() {
-    let nick = 'SneatX';
+    let nick = 'sneatx';
 
     let res = await getDetallesUsuario(nick);
     console.log(res);

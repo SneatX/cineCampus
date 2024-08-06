@@ -78,7 +78,7 @@ export async function nuevoUsuario(infoCliente) {
     }
 
     let newClient = {
-        id_tarjeta: id_tarjeta,
+        id_tarjeta: new ObjectId(id_tarjeta),
         nombre: nombre,
         apellido: apellido,
         nick: nick,

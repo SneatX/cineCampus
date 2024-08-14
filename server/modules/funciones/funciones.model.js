@@ -1,7 +1,7 @@
-import { Connect } from '../../config/connnect.js';
-import { ObjectId } from 'mongodb';
+const { Connect } = require('../../config/connnect.js');
+const { ObjectId } = require('mongodb');
 
-export class FuncionesRepository extends Connect {
+class FuncionesRepository extends Connect {
     static instance;
     constructor() {
         if (typeof FuncionesRepository.instance === 'object') {
@@ -86,3 +86,8 @@ export class FuncionesRepository extends Connect {
         return res;
     }
 }
+
+module.exports = {
+	FuncionesRepository
+};
+

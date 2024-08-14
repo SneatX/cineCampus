@@ -1,7 +1,7 @@
-import { Connect } from '../../config/connnect.js';
-import { ObjectId } from 'mongodb';
+const { Connect } = require('../../config/connnect.js');
+const { ObjectId } = require('mongodb');
 
-export class BoletasRepository extends Connect {
+class BoletasRepository extends Connect {
     static instance;
     constructor() {
         if (typeof BoletasRepository.instance === 'object') {
@@ -42,4 +42,8 @@ export class BoletasRepository extends Connect {
         let res = await this.collection.insertOne(boleta);
         return res;
     }
+}
+
+module.exports = {
+    BoletasRepository
 }

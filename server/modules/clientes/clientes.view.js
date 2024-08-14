@@ -1,8 +1,8 @@
-import { cambiarRol, nuevoUsuario } from './clientes.controller.js';
-import { getDetallesUsuario } from './clientes.controller.js';
-import { getAllUsuarios } from './clientes.controller.js';
+const { cambiarRol, nuevoUsuario } = require('./clientes.controller.js');
+const { getDetallesUsuario } = require('./clientes.controller.js');
+const { getAllUsuarios } = require('./clientes.controller.js');
 
-export async function casoUso1() {
+async function casoUso1() {
     let nuevoCliente = {
         nombre: '',
         apellido: '',
@@ -16,14 +16,14 @@ export async function casoUso1() {
     console.log(res);
 }
 
-export async function casoUso10() {
+async function casoUso10() {
     let nick = 'admin';
 
     let res = await getDetallesUsuario(nick);
     console.log(res);
 }
 
-export async function casoUso11(){
+async function casoUso11(){
     let nick = "sneatx"
     let rol = "vip"
 
@@ -31,8 +31,15 @@ export async function casoUso11(){
     console.log(res)
 }
 
-export async function casoUso12() {
+async function casoUso12() {
     let res = await getAllUsuarios();
     console.log(res);
+}
+
+module.exports = {
+    casoUso1,
+    casoUso10,
+    casoUso11,
+    casoUso12
 }
 

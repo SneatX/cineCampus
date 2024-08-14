@@ -1,5 +1,5 @@
-import { FuncionesRepository } from '../funciones/funciones.model.js';
-import { PeliculasRepository } from './peliculas.model.js';
+const { FuncionesRepository } = require('../funciones/funciones.model.js');
+const { PeliculasRepository } = require('./peliculas.model.js');
 
 
 /**
@@ -11,7 +11,7 @@ import { PeliculasRepository } from './peliculas.model.js';
  * @returns {number} retorno[].duracion - La duración de la película en horas.
  * @returns {Array} retorno[].horarios - Los horarios de las funciones de la película.
  */
-export async function verPelisCatalogo() {
+async function verPelisCatalogo() {
     let peliculasCollection = new PeliculasRepository();
     let funcionesCollection = new FuncionesRepository();
 
@@ -54,7 +54,7 @@ export async function verPelisCatalogo() {
  * @returns {Array} retorno.horarios - Los horarios de las funciones de la película.
  */
 
-export async function verInformacionPelicula(idPelicula) {
+async function verInformacionPelicula(idPelicula) {
     let peliculasCollection = new PeliculasRepository();
     let funcionesCollection = new FuncionesRepository();
 
@@ -66,4 +66,9 @@ export async function verInformacionPelicula(idPelicula) {
     }));
     pelicula.horarios = horarios;
     return pelicula;
+}
+
+module.exports = {
+    verPelisCatalogo,
+    verInformacionPelicula
 }

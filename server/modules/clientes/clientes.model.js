@@ -1,7 +1,7 @@
-import { Connect } from '../../config/connnect.js';
-import { ObjectId } from 'mongodb';
+const { Connect } = require('../../config/connnect.js');
+const { ObjectId } = require('mongodb');
 
-export class ClientesRepository extends Connect {
+class ClientesRepository extends Connect {
     static instance;
     constructor() {
         if (typeof ClientesRepository.instance === 'object') {
@@ -82,4 +82,8 @@ export class ClientesRepository extends Connect {
         let {users: [newUser]} = await this.db.command({ usersInfo: { user: nick, db: 'cineCampus' } });
         return newUser
     }
+}
+
+module.exports = {
+    ClientesRepository
 }

@@ -1,6 +1,6 @@
-import { Connect } from '../../config/connnect.js';
+const { Connect } = require('../../config/connnect.js');
 
-export class SalasRepository extends Connect {
+class SalasRepository extends Connect {
     static instance;
     constructor() {
         if (typeof SalasRepository.instance === 'object') {
@@ -22,4 +22,8 @@ export class SalasRepository extends Connect {
         let res = await this.collection.find({}).toArray();
         return res;
     }
+}
+
+module.exports = {
+    SalasRepository
 }

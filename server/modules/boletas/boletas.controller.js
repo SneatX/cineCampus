@@ -1,8 +1,8 @@
-import { FuncionesRepository } from '../funciones/funciones.model.js';
-import { ClientesRepository } from '../clientes/clientes.model.js';
-import { BoletasRepository } from './boletas.model.js';
-import { TarjetasRepository } from '../tarjetas/tarjetas.model.js';
-import { ObjectId } from 'mongodb';
+const { FuncionesRepository } = require('../funciones/funciones.model.js');
+const { ClientesRepository } = require('../clientes/clientes.model.js');
+const { BoletasRepository } = require('./boletas.model.js');
+const { TarjetasRepository } = require('../tarjetas/tarjetas.model.js');
+const { ObjectId } = require('mongodb');
 
 
 /**
@@ -16,7 +16,7 @@ import { ObjectId } from 'mongodb';
  * @returns {string} resultado - El resultado de la operación ('exito' o 'error').
  * @returns {string} mensaje - Mensaje asociado con el resultado.
  */
-export async function comprarBoleta(idFuncion, idCliente, asiento, pago) {
+async function comprarBoleta(idFuncion, idCliente, asiento, pago) {
     let funcionesCollection = new FuncionesRepository();
     let clientesCollection = new ClientesRepository();
     let boletaCollection = new BoletasRepository();
@@ -101,7 +101,7 @@ export async function comprarBoleta(idFuncion, idCliente, asiento, pago) {
  * @returns {string} resultado - El resultado de la operación ('exito' o 'error').
  * @returns {string} mensaje - Mensaje asociado con el resultado.
  */
-export async function cancelarReserva(idBoleta) {
+async function cancelarReserva(idBoleta) {
     let boletasCollection = new BoletasRepository();
     let funcionesCollection = new FuncionesRepository();
 
@@ -131,4 +131,9 @@ export async function cancelarReserva(idBoleta) {
         asiento: asiento,
         funcion: boleta.id_funcion.toString()
     };
+}
+
+module.exports = {
+    comprarBoleta,
+    cancelarReserva
 }

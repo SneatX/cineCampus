@@ -1,7 +1,7 @@
-import { Connect } from '../../config/connnect.js';
-import { ObjectId } from 'mongodb';
+const { Connect } = require('../../config/connnect.js');
+const { ObjectId } = require('mongodb');
 
-export class TarjetasRepository extends Connect {
+class TarjetasRepository extends Connect {
     static instance;
     constructor() {
         if (typeof TarjetasRepository.instance === 'object') {
@@ -30,4 +30,8 @@ export class TarjetasRepository extends Connect {
             .toArray();
         return res;
     }
+}
+
+module.exports = {
+    TarjetasRepository
 }

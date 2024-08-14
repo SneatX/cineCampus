@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Examen de mongo II campusLands ",
   "main": "main.js",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "dev": "node --watch --env-file=.env main.js ",
     "styles": "npx prettier --write src/**/*.js"

@@ -1,7 +1,7 @@
-import { Connect } from '../../config/connnect.js';
-import { ObjectId } from 'mongodb';
+const { Connect } = require('../../config/connnect.js');
+const { ObjectId } = require('mongodb');
 
-export class PeliculasRepository extends Connect {
+class PeliculasRepository extends Connect {
     static instance;
     constructor() {
         if (typeof PeliculasRepository.instance === 'object') {
@@ -31,3 +31,7 @@ export class PeliculasRepository extends Connect {
         return res;
     }
 }
+
+module.exports = {
+	PeliculasRepository
+};

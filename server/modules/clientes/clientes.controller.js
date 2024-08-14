@@ -1,5 +1,5 @@
-import { ClientesRepository } from './clientes.model.js';
-import { ObjectId } from 'mongodb';
+const { ClientesRepository } = require('./clientes.model.js');
+const { ObjectId } = require('mongodb');
 
 /**
  * Crea un nuevo usuario en la base de datos.
@@ -16,7 +16,7 @@ import { ObjectId } from 'mongodb';
  * @returns {string} mensaje - Mensaje asociado con el resultado (por ejemplo, 'Email ya registrado anteriormente').
  */
 
-export async function nuevoUsuario(infoCliente) {
+async function nuevoUsuario(infoCliente) {
     let { nombre, apellido, nick, email, telefono, id_tarjeta, admin } = infoCliente;
     let clientesCollection = new ClientesRepository();
 
@@ -97,7 +97,7 @@ export async function nuevoUsuario(infoCliente) {
  * @param {string} nickDeseado - Nickname del usuario deseado.
  * @returns {Object} - Retorna un objeto con los detalles del cliente y usuario.
  */
-export async function getDetallesUsuario(nickDeseado) {
+async function getDetallesUsuario(nickDeseado) {
     let clientesCollection = new ClientesRepository();
 
     let cliente = await clientesCollection.getClienteByNick(nickDeseado);
@@ -115,15 +115,22 @@ export async function getDetallesUsuario(nickDeseado) {
  * 
  * @returns {Array} - Retorna un array con todos los usuarios.
  */
-export async function getAllUsuarios() {
+async function getAllUsuarios() {
     let clientesCollection = new ClientesRepository();
     let res = await clientesCollection.getAllUsuarios();
     return res;
 }
 
-export async function cambiarRol(nick, nuevoRol){
+async function cambiarRol(nick, nuevoRol){
     let clientesCollection = new ClientesRepository()
 
     let res = await clientesCollection.changeRole(nick, nuevoRol)
     return res
+}
+
+module.exports = {
+    nuevoUsuario,
+    getDetallesUsuario,
+    getAllUsuarios,
+    cambiarRol
 }

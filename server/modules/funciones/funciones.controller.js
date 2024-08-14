@@ -1,5 +1,4 @@
-import { FuncionesRepository } from './funciones.model.js';
-
+const { FuncionesRepository } = require('./funciones.model.js');
 
 /**
  * Obtiene la disponibilidad de asientos para una función de cine.
@@ -9,7 +8,7 @@ import { FuncionesRepository } from './funciones.model.js';
  * @returns {Array} retorno.asientos_libres - Array con los asientos libres para la función.
  * @returns {string} retorno.mensaje - Mensaje descriptivo sobre el estado de la operación.
  */
-export async function verDisponibilidadAsientos(idFuncion) {
+async function verDisponibilidadAsientos(idFuncion) {
     let funcionesCollection = new FuncionesRepository();
 
     //Obtener asientos ocupados y limites
@@ -39,4 +38,8 @@ export async function verDisponibilidadAsientos(idFuncion) {
         asientos_libres: asientosDisponibles,
         mensaje: 'Array ordenado de asientos libres  para la funcion'
     };
+}
+
+module.exports = {
+    verDisponibilidadAsientos
 }

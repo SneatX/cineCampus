@@ -1,4 +1,4 @@
-const { ClientesRepository } = require('./clientes.model.js');
+const { ClientesRepository } = require('../model/clientes.model.js');
 const { ObjectId } = require('mongodb');
 
 /**

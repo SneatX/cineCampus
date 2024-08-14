@@ -1,4 +1,4 @@
-const { FuncionesRepository } = require('./funciones.model.js');
+const { FuncionesRepository } = require('../model/funciones.model.js');
 
 /**
  * Obtiene la disponibilidad de asientos para una función de cine.

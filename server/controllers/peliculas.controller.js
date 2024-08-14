@@ -1,5 +1,5 @@
-const { FuncionesRepository } = require('../funciones/funciones.model.js');
-const { PeliculasRepository } = require('./peliculas.model.js');
+const { FuncionesRepository } = require('../model/funciones.model.js');
+const { PeliculasRepository } = require('../model/peliculas.model.js');
 
 
 /**

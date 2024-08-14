@@ -1,7 +1,7 @@
-const { FuncionesRepository } = require('../funciones/funciones.model.js');
-const { ClientesRepository } = require('../clientes/clientes.model.js');
-const { BoletasRepository } = require('./boletas.model.js');
-const { TarjetasRepository } = require('../tarjetas/tarjetas.model.js');
+const { FuncionesRepository } = require('../model/funciones.model.js');
+const { ClientesRepository } = require('../model/clientes.model.js');
+const { BoletasRepository } = require('../model/boletas.model.js');
+const { TarjetasRepository } = require('../model/tarjetas.model.js');
 const { ObjectId } = require('mongodb');
 
 

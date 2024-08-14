@@ -5,7 +5,8 @@
   "main": "main.js",
   "type": "commonjs",
   "scripts": {
-    "dev": "node --watch --env-file=.env main.js ",
+    "test": "node --watch --env-file=.env app.js ",
+    "dev": "node --watch --env-file=.env app.js ",
     "styles": "npx prettier --write src/**/*.js"
   },
   "repository": {

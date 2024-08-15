@@ -1,4 +1,4 @@
-const { Connect } = require('../config/connnect.js');
+const { Connect } = require('../index.js');
 
 class SalasRepository extends Connect {
     static instance;

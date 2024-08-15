@@ -1,4 +1,4 @@
-const { Connect } = require('../config/connnect.js');
+const { Connect } = require('../index.js');
 const { ObjectId } = require('mongodb');
 
 class TarjetasRepository extends Connect {

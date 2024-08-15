@@ -159,6 +159,12 @@ MONGO_CLUSTER = monorail.proxy.rlwy.net
 MONGO_DB = cineCampus
 `
 
+`
+EXPRESS_PORT=3000
+EXPRESS_HOST = localhost
+EXPRESS_STATIC = public
+`
+
 ## Esquema de Base de Datos
 
 ### Clientes

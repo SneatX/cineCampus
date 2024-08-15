@@ -1,4 +1,4 @@
-const { Connect } = require('../config/connnect.js');
+const { Connect } = require('../index.js');
 const { ObjectId } = require('mongodb');
 
 class PeliculasRepository extends Connect {
@@ -29,6 +29,10 @@ class PeliculasRepository extends Connect {
             .find({ _id: new ObjectId(id) })
             .toArray();
         return res;
+    }
+
+    async getPeliculasInCartelera(funciones) {
+        
     }
 }
 

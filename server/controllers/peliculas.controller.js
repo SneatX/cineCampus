@@ -1,7 +1,7 @@
 const { FuncionesRepository } = require('../model/funciones.model.js');
 const { PeliculasRepository } = require('../model/peliculas.model.js');
 
-
+const { PeliculasDto } = require("../dto/peliculas.dto")
 /**
  * Obtiene el catálogo de películas en cartelera.
  * 
@@ -11,12 +11,20 @@ const { PeliculasRepository } = require('../model/peliculas.model.js');
  * @returns {number} retorno[].duracion - La duración de la película en horas.
  * @returns {Array} retorno[].horarios - Los horarios de las funciones de la película.
  */
-async function verPelisCatalogo() {
+async function verPelisCatalogo(req, res) {
+    let peliculasDto = new PeliculasDto()
+
     let peliculasCollection = new PeliculasRepository();
     let funcionesCollection = new FuncionesRepository();
 
     //Obtencion de los ids de las peliculas en cartelera
     let funciones = await funcionesCollection.getAllFunciones();
+    let data = 
+    (funciones.length < 1) ?
+    peliculasDto.noExistingFuncionesTemplate(funciones) :
+    peliculasDto.existingFunctionsTemplate(funciones)
+
+    //LO DEJE AQUI -------------------------------------------------------------------
     let idsPelis = new Set();
     funciones.forEach((funcion) => {
         idsPelis.add(funcion.id_pelicula.toString());

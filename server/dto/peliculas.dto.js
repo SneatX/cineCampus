@@ -14,6 +14,13 @@ class PeliculasDto{
         }
     }
 
+    catalogoTemplate(arg){
+        return {
+            status: 201,
+            data: arg
+        }
+    }
+
 }
 
 module.exports = {

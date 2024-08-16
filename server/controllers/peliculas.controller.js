@@ -24,7 +24,8 @@ async function verPelisCatalogo(req, res) {
     peliculasDto.noExistingFuncionesTemplate(funciones) :
     peliculasDto.existingFunctionsTemplate(funciones)
 
-    //LO DEJE AQUI -------------------------------------------------------------------
+    if(data.status === 404) res.status(data.status).json(data)
+
     let idsPelis = new Set();
     funciones.forEach((funcion) => {
         idsPelis.add(funcion.id_pelicula.toString());
@@ -47,8 +48,9 @@ async function verPelisCatalogo(req, res) {
             };
         })
     );
-
-    return peliculas;
+    
+    data = peliculasDto.catalogoTemplate(peliculas)
+    res.status(data.status).json(data)
 }
 
 /**

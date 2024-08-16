@@ -1,6 +1,9 @@
 const { Connect } = require('../index.js');
 const { ObjectId } = require('mongodb');
 
+const { FuncionesRepository } = require('./funciones.model.js');
+
+
 class PeliculasRepository extends Connect {
     static instance;
     constructor() {
@@ -31,9 +34,6 @@ class PeliculasRepository extends Connect {
         return res;
     }
 
-    async getPeliculasInCartelera(funciones) {
-        
-    }
 }
 
 module.exports = {

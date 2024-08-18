@@ -82,6 +82,11 @@ class ClientesRepository extends Connect {
         let {users: [newUser]} = await this.db.command({ usersInfo: { user: nick, db: 'cineCampus' } });
         return newUser
     }
+
+    async getUserByNick(nick){
+        let {users: [user]} = await this.db.command({ usersInfo: { user: nick, db: 'cineCampus' } });
+        return user
+    }
 }
 
 module.exports = {

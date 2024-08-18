@@ -1,4 +1,6 @@
 const { ClientesRepository } = require('../model/clientes.model.js');
+const { ClientesDto } = require("../dto/clientes.dto.js")
+const { validationResult } = require("express-validator")
 const { ObjectId } = require('mongodb');
 
 /**
@@ -16,78 +18,95 @@ const { ObjectId } = require('mongodb');
  * @returns {string} mensaje - Mensaje asociado con el resultado (por ejemplo, 'Email ya registrado anteriormente').
  */
 
-async function nuevoUsuario(infoCliente) {
-    let { nombre, apellido, nick, email, telefono, id_tarjeta, admin } = infoCliente;
+async function nuevoUsuario(req, res) {
+    const errors = validationResult(req)
+    if(!errors.isEmpty()) return res.status(400).json({errors: errors.array()})
+
+    let { nombre, apellido, nick, email, telefono, id_tarjeta, admin } = req.body
+
+    let clientesDto = new ClientesDto()
     let clientesCollection = new ClientesRepository();
+    let dtoRes
 
     if(admin){
+        //Validar la no existencia de un usuario con el mismo nick
+        let nickExistence = await clientesCollection.getUserByNick(nick)
+        dtoRes = nickExistence ? clientesDto.repeatedAdminNick() : clientesDto.okTemplate()
+
+        if(dtoRes.status === 400) return res.status(dtoRes.status).json(dtoRes)
+
         let newAdmin = await clientesCollection.createNewUser(
-            nick,
-            '1878',
-            'admin',
-            "admin"
+            nick, //usuario
+            '1878', //contraseña
+            'admin', //rol
+            "admin" //base de datos
         );
-        return newAdmin
+
+        dtoRes = newAdmin.ok ? clientesDto.newAdminTemplate(newAdmin) : clientesDto.errCreatingAdmin()
+        if(dtoRes.status === 404) res.status(dtoRes.status).json(dtoRes)
+        res.status(dtoRes.status).json(dtoRes)
     }
 
-    //Validar que no existan datos importantes repetidos
-    let clientes = await clientesCollection.getAllClientes();
-    for (let cliente of clientes) {
-        if (infoCliente.email === cliente.email)
-            return {
-                resultado: 'error',
-                mensaje: 'Email ya registrado anteriormente'
-            };
+    
 
-        if (infoCliente.nick === cliente.nick)
-            return {
-                resultado: 'error',
-                mensaje: 'Nick ya registrado anteriormente'
-            };
+    // //Validar que no existan datos importantes repetidos
+    // let clientes = await clientesCollection.getAllClientes();
+    // for (let cliente of clientes) {
+    //     if (infoCliente.email === cliente.email)
+    //         return {
+    //             resultado: 'error',
+    //             mensaje: 'Email ya registrado anteriormente'
+    //         };
+
+    //     if (infoCliente.nick === cliente.nick)
+    //         return {
+    //             resultado: 'error',
+    //             mensaje: 'Nick ya registrado anteriormente'
+    //         };
 
             
 
-        if(cliente.id_tarjeta != null){
+    //     if(cliente.id_tarjeta != null){
 
-            if (infoCliente.id_tarjeta === cliente.id_tarjeta.toString())
-            return {
-                resultado: 'error',
-                mensaje: 'Tarjeta ya registrado anteriormente'
-            };
-        }
+    //         if (infoCliente.id_tarjeta === cliente.id_tarjeta.toString())
+    //         return {
+    //             resultado: 'error',
+    //             mensaje: 'Tarjeta ya registrado anteriormente'
+    //         };
+    //     }
 
-    }
+    // }
 
-    if (ObjectId.isValid(id_tarjeta)) {
-        console.log('con tarjeta');
-        let newUserRes = await clientesCollection.createNewUser(
-            nick,
-            '1234',
-            'vip',
-            "cineCampus"
-        );
-    } else {
-        console.log('sin tarjeta');
-        let newUserRes = await clientesCollection.createNewUser(
-            nick,
-            '1234',
-            'estandar',
-            "cineCampus"
-        );
-        id_tarjeta = null;
-    }
+    // if (ObjectId.isValid(id_tarjeta)) {
+    //     console.log('con tarjeta');
+    //     let newUserRes = await clientesCollection.createNewUser(
+    //         nick,
+    //         '1234',
+    //         'vip',
+    //         "cineCampus"
+    //     );
+    // } else {
+    //     console.log('sin tarjeta');
+    //     let newUserRes = await clientesCollection.createNewUser(
+    //         nick,
+    //         '1234',
+    //         'estandar',
+    //         "cineCampus"
+    //     );
+    //     id_tarjeta = null;
+    // }
 
-    let newClient = {
-        id_tarjeta: new ObjectId(id_tarjeta),
-        nombre: nombre,
-        apellido: apellido,
-        nick: nick,
-        email: email,
-        telefono
-    };
+    // let newClient = {
+    //     id_tarjeta: new ObjectId(id_tarjeta),
+    //     nombre: nombre,
+    //     apellido: apellido,
+    //     nick: nick,
+    //     email: email,
+    //     telefono
+    // };
 
-    let resClient = await clientesCollection.agreggateNewClient(newClient);
-    return resClient;
+    // let resClient = await clientesCollection.agreggateNewClient(newClient);
+    // return resClient;
 }
 
 

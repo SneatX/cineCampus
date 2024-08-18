@@ -88,6 +88,5 @@ class FuncionesRepository extends Connect {
 }
 
 module.exports = {
-	FuncionesRepository
+    FuncionesRepository
 };
-

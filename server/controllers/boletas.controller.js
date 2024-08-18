@@ -4,10 +4,9 @@ const { BoletasRepository } = require('../model/boletas.model.js');
 const { TarjetasRepository } = require('../model/tarjetas.model.js');
 const { ObjectId } = require('mongodb');
 
-
 /**
  * Compra una boleta para una función de cine.
- * 
+ *
  * @param {string} idFuncion - El ID de la función.
  * @param {string} idCliente - El ID del cliente.
  * @param {string} asiento - El asiento deseado en formato "FilaColumna" (e.g., "A10").
@@ -92,10 +91,9 @@ async function comprarBoleta(idFuncion, idCliente, asiento, pago) {
     return resBoleta;
 }
 
-
 /**
  * Cancela una reserva de boleta.
- * 
+ *
  * @param {string} idBoleta - El ID de la boleta.
  * @returns {Object} - Retorna un objeto con el resultado de la operación.
  * @returns {string} resultado - El resultado de la operación ('exito' o 'error').
@@ -136,4 +134,4 @@ async function cancelarReserva(idBoleta) {
 module.exports = {
     comprarBoleta,
     cancelarReserva
-}
+};

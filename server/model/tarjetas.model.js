@@ -34,4 +34,4 @@ class TarjetasRepository extends Connect {
 
 module.exports = {
     TarjetasRepository
-}
+};

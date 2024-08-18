@@ -1,4 +1,4 @@
-const { MongoClient } = require('mongodb')
+const { MongoClient } = require('mongodb');
 
 class Connect {
     user;
@@ -65,5 +65,5 @@ class Connect {
 }
 
 module.exports = {
-	Connect
+    Connect
 };

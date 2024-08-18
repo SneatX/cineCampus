@@ -3,7 +3,6 @@ const { ObjectId } = require('mongodb');
 
 const { FuncionesRepository } = require('./funciones.model.js');
 
-
 class PeliculasRepository extends Connect {
     static instance;
     constructor() {
@@ -33,9 +32,8 @@ class PeliculasRepository extends Connect {
             .toArray();
         return res;
     }
-
 }
 
 module.exports = {
-	PeliculasRepository
+    PeliculasRepository
 };

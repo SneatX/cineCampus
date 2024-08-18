@@ -1,7 +1,20 @@
-const { getAllUsuarios, getDetallesUsuario, cambiarRol, nuevoUsuario } = require('./controllers/clientes.controller.js');
-const { verInformacionPelicula, verPelisCatalogo } = require('./controllers/peliculas.controller.js');
-const { cancelarReserva, comprarBoleta } = require('./controllers/boletas.controller.js');
-const { verDisponibilidadAsientos } = require('./controllers/funciones.controller.js');
+const {
+    getAllUsuarios,
+    getDetallesUsuario,
+    cambiarRol,
+    nuevoUsuario
+} = require('./controllers/clientes.controller.js');
+const {
+    verInformacionPelicula,
+    verPelisCatalogo
+} = require('./controllers/peliculas.controller.js');
+const {
+    cancelarReserva,
+    comprarBoleta
+} = require('./controllers/boletas.controller.js');
+const {
+    verDisponibilidadAsientos
+} = require('./controllers/funciones.controller.js');
 
 async function casoUso1() {
     let nuevoCliente = {
@@ -39,7 +52,6 @@ async function casoUso4() {
     console.log(res);
 }
 
-
 async function casoUso5() {
     let idFuncion = '66a95317e5d7725b81bbbbda';
 
@@ -54,7 +66,6 @@ async function casoUso7() {
     console.log(res);
 }
 
-
 async function casoUso10() {
     let nick = 'admin';
 
@@ -62,12 +73,12 @@ async function casoUso10() {
     console.log(res);
 }
 
-async function casoUso11(){
-    let nick = "sneatx"
-    let rol = "vip"
+async function casoUso11() {
+    let nick = 'sneatx';
+    let rol = 'vip';
 
-    let res = await cambiarRol(nick, rol)
-    console.log(res)
+    let res = await cambiarRol(nick, rol);
+    console.log(res);
 }
 
 async function casoUso12() {
@@ -75,8 +86,7 @@ async function casoUso12() {
     console.log(res);
 }
 
-
-// Crear usuario: 
+// Crear usuario:
 //casoUso1()
 
 // Consultar todas las películas disponibles
@@ -102,4 +112,3 @@ async function casoUso12() {
 
 // Listar Usuarios
 //casoUso12()
-

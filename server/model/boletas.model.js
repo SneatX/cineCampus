@@ -46,4 +46,4 @@ class BoletasRepository extends Connect {
 
 module.exports = {
     BoletasRepository
-}
+};

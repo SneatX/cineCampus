@@ -26,4 +26,4 @@ class SalasRepository extends Connect {
 
 module.exports = {
     SalasRepository
-}
+};

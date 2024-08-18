@@ -65,30 +65,42 @@ class ClientesRepository extends Connect {
         return newUser;
     }
 
-    async changeRole(nick, newRole){
-        let {users: [user]} = await this.db.command({ usersInfo: { user: nick, db: 'cineCampus' } });
-        let roles = user.roles
+    async changeRole(nick, newRole) {
+        let {
+            users: [user]
+        } = await this.db.command({
+            usersInfo: { user: nick, db: 'cineCampus' }
+        });
+        let roles = user.roles;
 
         let revoke = await this.db.command({
             revokeRolesFromUser: nick,
             roles: [{ role: roles[0].role, db: 'cineCampus' }]
-        })
+        });
 
         let added = await this.db.command({
             grantRolesToUser: nick,
             roles: [{ role: newRole, db: 'cineCampus' }]
-        })
+        });
 
-        let {users: [newUser]} = await this.db.command({ usersInfo: { user: nick, db: 'cineCampus' } });
-        return newUser
+        let {
+            users: [newUser]
+        } = await this.db.command({
+            usersInfo: { user: nick, db: 'cineCampus' }
+        });
+        return newUser;
     }
 
-    async getUserByNick(nick){
-        let {users: [user]} = await this.db.command({ usersInfo: { user: nick, db: 'cineCampus' } });
-        return user
+    async getUserByNick(nick) {
+        let {
+            users: [user]
+        } = await this.db.command({
+            usersInfo: { user: nick, db: 'cineCampus' }
+        });
+        return user;
     }
 }
 
 module.exports = {
     ClientesRepository
-}
+};

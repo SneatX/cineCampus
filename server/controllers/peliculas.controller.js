@@ -1,10 +1,10 @@
 const { FuncionesRepository } = require('../model/funciones.model.js');
 const { PeliculasRepository } = require('../model/peliculas.model.js');
 
-const { PeliculasDto } = require("../dto/peliculas.dto")
+const { PeliculasDto } = require('../dto/peliculas.dto');
 /**
  * Obtiene el catálogo de películas en cartelera.
- * 
+ *
  * @returns {Array} - Retorna un array de objetos, cada uno representando una película en cartelera con sus horarios.
  * @returns {string} retorno[].titulo - El título de la película.
  * @returns {Array} retorno[].generos - Los géneros de la película.
@@ -12,19 +12,19 @@ const { PeliculasDto } = require("../dto/peliculas.dto")
  * @returns {Array} retorno[].horarios - Los horarios de las funciones de la película.
  */
 async function verPelisCatalogo(req, res) {
-    let peliculasDto = new PeliculasDto()
+    let peliculasDto = new PeliculasDto();
 
     let peliculasCollection = new PeliculasRepository();
     let funcionesCollection = new FuncionesRepository();
 
     //Obtencion de los ids de las peliculas en cartelera
     let funciones = await funcionesCollection.getAllFunciones();
-    let data = 
-    (funciones.length < 1) ?
-    peliculasDto.noExistingFuncionesTemplate(funciones) :
-    peliculasDto.existingFunctionsTemplate(funciones)
+    let data =
+        funciones.length < 1
+            ? peliculasDto.noExistingFuncionesTemplate(funciones)
+            : peliculasDto.existingFunctionsTemplate(funciones);
 
-    if(data.status === 404) res.status(data.status).json(data)
+    if (data.status === 404) res.status(data.status).json(data);
 
     let idsPelis = new Set();
     funciones.forEach((funcion) => {
@@ -48,14 +48,14 @@ async function verPelisCatalogo(req, res) {
             };
         })
     );
-    
-    data = peliculasDto.catalogoTemplate(peliculas)
-    res.status(data.status).json(data)
+
+    data = peliculasDto.catalogoTemplate(peliculas);
+    res.status(data.status).json(data);
 }
 
 /**
  * Obtiene la información detallada de una película específica.
- * 
+ *
  * @param {string} idPelicula - El ID de la película.
  * @returns {Object} - Retorna un objeto con la información de la película.
  * @returns {string} retorno.titulo - El título de la película.
@@ -81,4 +81,4 @@ async function verInformacionPelicula(idPelicula) {
 module.exports = {
     verPelisCatalogo,
     verInformacionPelicula
-}
+};

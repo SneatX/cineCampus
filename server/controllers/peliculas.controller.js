@@ -1,7 +1,9 @@
 const { FuncionesRepository } = require('../model/funciones.model.js');
 const { PeliculasRepository } = require('../model/peliculas.model.js');
+const { validationResult } = require('express-validator');
 
 const { PeliculasDto } = require('../dto/peliculas.dto');
+const { FuncionesDto } = require('../dto/funciones.dto.js')
 /**
  * Obtiene el catálogo de películas en cartelera.
  *
@@ -64,18 +66,34 @@ async function verPelisCatalogo(req, res) {
  * @returns {Array} retorno.horarios - Los horarios de las funciones de la película.
  */
 
-async function verInformacionPelicula(idPelicula) {
+async function verInformacionPelicula(req, res) {
+    const errors = validationResult(req);
+    if (!errors.isEmpty())
+        return res.status(400).json({ errors: errors.array() });
+
     let peliculasCollection = new PeliculasRepository();
     let funcionesCollection = new FuncionesRepository();
+    let peliculasDto = new PeliculasDto()
+    let funcionesDto = new FuncionesDto()
+    let idPelicula = req.query.id
 
     let pelicula = await peliculasCollection.getPeliculaById(idPelicula);
-    let funciones =
-        await funcionesCollection.getFuncionesByPeliculaId(idPelicula);
+    let dtoRes = !pelicula ? peliculasDto.noMoviesTemplate() : peliculasDto.okTemplate(pelicula)
+    
+    if(dtoRes.status === 404) return res.status(dtoRes.status).json(dtoRes);
+    
+    pelicula.horarios = [];
+    let funciones = await funcionesCollection.getFuncionesByPeliculaId(idPelicula);
+    dtoRes = !funciones.length ? funcionesDto.noFunctionsTemplate() : funcionesDto.okTemplate()
+
+    //Retornar si no tiene funciones con horarios vacio
+    if(dtoRes.status === 404) return res.status(200).json(pelicula);
+
     let horarios = (funciones = funciones.map((funcion) => {
         return funcion.fecha_inicio;
     }));
     pelicula.horarios = horarios;
-    return pelicula;
+    return res.status(200).json(pelicula);
 }
 
 module.exports = {

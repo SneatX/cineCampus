@@ -6,6 +6,7 @@ const {
     verInformacionPelicula
 } = require('./controllers/peliculas.controller');
 const { nuevoUsuario } = require('./controllers/clientes.controller');
+const { comprarBoleta } = require('./controllers/boletas.controller')
 
 const { newUserValidation } = require('./validators/user.validation');
 const { getMovieDataValidation } = require('./validators/peliculas.validation');
@@ -19,6 +20,8 @@ router.post('/caso1', newUserValidation(), nuevoUsuario);
 router.get('/caso2', verPelisCatalogo);
 
 router.get('/caso3', getMovieDataValidation(), verInformacionPelicula);
+
+router.get('/caso4', getMovieDataValidation(), comprarBoleta);
 
 module.exports = {
     router

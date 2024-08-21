@@ -102,7 +102,7 @@ async function comprarBoleta(req, res) {
         pago: pago
     };
     let resBoleta = await boletaCollection.aggregatenewBoleta(newBoleta);
-    if(resBoleta || resAsientos) dtoRes = boletasDto.createdTemplate(resBoleta)
+    if(resBoleta || resAsientos) dtoRes = boletasDto.createdTemplate(newBoleta)
         
     return res.status(dtoRes.status).json(dtoRes); 
 }

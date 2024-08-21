@@ -48,26 +48,25 @@ async function comprarBoleta(req, res) {
     //Validacion semantica del asiento valida
     let infoSala = await funcionesCollection.getAsientosFuncion(idFuncion);
 
-    let validacionAsiento = /^[A-Z](0?[1-9]|[1-9][0-9])$/;
-    if (!validacionAsiento.test(asiento)) {
-        return {
-            resultado: 'error',
-            mensaje: 'Formato de asiento ingresado de manera incorrecta'
-        };
-    }
+    // let validacionAsiento = /^[A-Z](0?[1-9]|[1-9][0-9])$/;
+    // if (!validacionAsiento.test(asiento)) {
+    //     return {
+    //         resultado: 'error',
+    //         mensaje: 'Formato de asiento ingresado de manera incorrecta'
+    //     };
+    // }
 
     //Validacion del asiento dentro de los limites de la sala
     let filaDeseada = asiento[0];
-    if (filaDeseada > infoSala.limitFila)
-        return { resultado: 'error', mensaje: 'Limite de fila excedido' };
+    if (filaDeseada > infoSala.limitFila) dtoRes = boletasDto.nonExistentRow(asiento)
 
     let columnaDeseada = asiento.slice(1);
-    if (+columnaDeseada > +infoSala.limitCol)
-        return { resultado: 'error', mensaje: 'Limite de columna excedido' };
+    if (+columnaDeseada > +infoSala.limitCol) dtoRes = boletasDto.nonExistentColumn(asiento)
 
     //Validacion asiento no ocupado
-    if (infoSala.asientosOcupados.includes(asiento))
-        return { resultado: 'error', mensaje: 'Asiento ocupado' };
+    if (infoSala.asientosOcupados.includes(asiento)) dtoRes = boletasDto.occupiedSeat(asiento)
+
+    if(dtoRes.status === 400) return res.status(dtoRes.status).json(dtoRes); 
 
     // //Validar que se ingreso con la cuenta del usuario
     // if (cliente.nick != process.env.MONGO_USER)
@@ -84,7 +83,7 @@ async function comprarBoleta(req, res) {
     if (idTarjeta) {
         let resTarjeta = await tarjetasCollection.getTarjetaById(idTarjeta);
         if (resTarjeta) {
-            precio -= 2000;
+            precio -= 2500;
         }
     }
 
@@ -103,7 +102,9 @@ async function comprarBoleta(req, res) {
         pago: pago
     };
     let resBoleta = await boletaCollection.aggregatenewBoleta(newBoleta);
-    return resBoleta;
+    if(resBoleta || resAsientos) dtoRes = boletasDto.createdTemplate(resBoleta)
+        
+    return res.status(dtoRes.status).json(dtoRes); 
 }
 
 /**

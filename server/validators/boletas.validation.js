@@ -10,14 +10,10 @@ exports.buyTicketValidation = () => {
         }),
         body("idFuncion")
         .exists().withMessage('El parámetro "idFuncion" es requerido en el body')
-        .isString().withMessage('El parámetro "idFuncion" debe ser un string')
-        .isLength({ min: 24, max: 24 }).withMessage('El parámetro "idFuncion" debe tener exactamente 24 caracteres')
-        .matches(/^[a-fA-F0-9]{24}$/).withMessage('El parámetro "idFuncion" debe ser una cadena hexadecimal de 24 caracteres'),
+        .isMongoId().withMessage('El idFuncion debe ser un codigo hexadecimal de mongo o objectId'),
         body("idCliente")
         .exists().withMessage('El parámetro "idCliente" es requerido en el body')
-        .isString().withMessage('El parámetro "idCliente" debe ser un string')
-        .isLength({ min: 24, max: 24 }).withMessage('El parámetro "idCliente" debe tener exactamente 24 caracteres')
-        .matches(/^[a-fA-F0-9]{24}$/).withMessage('El parámetro "idCliente" debe ser una cadena hexadecimal de 24 caracteres'),
+        .isMongoId().withMessage('El idCliente debe ser un codigo hexadecimal de mongo o objectId'),
         body("asiento")
         .matches(/^[A-Z](0?[1-9]|[1-9][0-9])$/)
         .withMessage("El string debe comenzar con una letra de 'a' a 'k' seguida por un número entre 1 y 10"),      

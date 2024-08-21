@@ -6,6 +6,14 @@ class ClientesDto {
         };
     }
 
+    nonExistentClient(){
+        return {
+            status: 404,
+            message: "Id del cliente no registrado en la base de datos",
+            id: arg
+        }
+    }
+
     newAdminTemplate(arg) {
         return {
             status: 201,

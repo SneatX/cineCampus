@@ -2,6 +2,11 @@ const { FuncionesRepository } = require('../model/funciones.model.js');
 const { ClientesRepository } = require('../model/clientes.model.js');
 const { BoletasRepository } = require('../model/boletas.model.js');
 const { TarjetasRepository } = require('../model/tarjetas.model.js');
+
+const { validationResult } = require('express-validator');
+const { BoletasDto } = require('../dto/boletas.dto.js')
+const { FuncionesDto } = require('../dto/funciones.dto.js')
+const { ClientesDto } = require('../dto/clientes.dto.js');
 const { ObjectId } = require('mongodb');
 
 /**
@@ -15,20 +20,30 @@ const { ObjectId } = require('mongodb');
  * @returns {string} resultado - El resultado de la operación ('exito' o 'error').
  * @returns {string} mensaje - Mensaje asociado con el resultado.
  */
-async function comprarBoleta(idFuncion, idCliente, asiento, pago) {
+async function comprarBoleta(req, res) {
+    const errors = validationResult(req);
+    if (!errors.isEmpty())
+        return res.status(400).json({ errors: errors.array() });
+
+    let {idFuncion, idCliente, asiento, pago} = req.body
+
     let funcionesCollection = new FuncionesRepository();
     let clientesCollection = new ClientesRepository();
     let boletaCollection = new BoletasRepository();
     let tarjetasCollection = new TarjetasRepository();
 
+    let boletasDto = new BoletasDto()
+    let funcionesDto = new FuncionesDto()
+    let clientesDto = new ClientesDto()
+
     //Validacion existencia de funcion y cliente
     let funcion = await funcionesCollection.getFuncionById(idFuncion);
-    if (!funcion)
-        return { resultado: 'error', mensaje: 'Id de funcion invalido' };
+    let dtoRes = !funcion ? funcionesDto.nonExistentFunction(idFuncion) : funcionesDto.okTemplate()
+    if(dtoRes.status === 404) return res.status(dtoRes.status).json(dtoRes); 
 
     let cliente = await clientesCollection.getClienteById(idCliente);
-    if (!cliente)
-        return { resultado: 'error', mensaje: 'Id de cliente invalido' };
+    dtoRes = !cliente ? clientesDto.nonExistentClient(idCliente) : clientesDto.okTemplate()
+    if(dtoRes.status === 404) return res.status(dtoRes.status).json(dtoRes); 
 
     //Validacion semantica del asiento valida
     let infoSala = await funcionesCollection.getAsientosFuncion(idFuncion);
@@ -54,12 +69,12 @@ async function comprarBoleta(idFuncion, idCliente, asiento, pago) {
     if (infoSala.asientosOcupados.includes(asiento))
         return { resultado: 'error', mensaje: 'Asiento ocupado' };
 
-    //Validar que se ingreso con la cuenta del usuario
-    if (cliente.nick != process.env.MONGO_USER)
-        return {
-            resultado: 'error',
-            mensaje: 'No inicio sesion con la cuenta del usuario a comprar'
-        };
+    // //Validar que se ingreso con la cuenta del usuario
+    // if (cliente.nick != process.env.MONGO_USER)
+    //     return {
+    //         resultado: 'error',
+    //         mensaje: 'No inicio sesion con la cuenta del usuario a comprar'
+    //     };
 
     //Calcular valor boleta validando
     let precio = funcion.precio;

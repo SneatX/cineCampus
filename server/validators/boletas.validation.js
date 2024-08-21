@@ -3,8 +3,8 @@ const { body, query } = require('express-validator');
 exports.buyTicketValidation = () => {
     return [
         query().custom((value, { req }) => {
-            if (Object.keys(req.body).length > 0) {
-                throw new Error('El cuerpo de la solicitud debe estar vacío');
+            if (Object.keys(req.query).length > 0) {
+                throw new Error('La query de la solicitud en la url debe estar vacío');
             }
             return true;
         }),
@@ -19,7 +19,10 @@ exports.buyTicketValidation = () => {
         .isLength({ min: 24, max: 24 }).withMessage('El parámetro "idCliente" debe tener exactamente 24 caracteres')
         .matches(/^[a-fA-F0-9]{24}$/).withMessage('El parámetro "idCliente" debe ser una cadena hexadecimal de 24 caracteres'),
         body("asiento")
-        .matches(/^[A-G](0|[1-2][0-9]|3[0-5])$/)
-        .withMessage('El string debe comenzar con una letra mayúscula de A a G seguida por un número entre 0 y 35'),
+        .matches(/^[A-Z](0?[1-9]|[1-9][0-9])$/)
+        .withMessage("El string debe comenzar con una letra de 'a' a 'k' seguida por un número entre 1 y 10"),      
+        body('pago')
+        .exists().withMessage('El parámetro "pago" es requerido en el body')
+        .isBoolean().withMessage('El parámetro "pago" debe ser un booleano (true o false)')
     ];
 };

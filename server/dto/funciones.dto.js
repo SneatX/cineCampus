@@ -14,6 +14,14 @@ class FuncionesDto {
         };
     }
 
+    nonExistentFunction(arg){
+        return {
+            status: 404,
+            message: "Id de funcion no registrado en la base de datos",
+            id: arg
+        }
+    }
+
 }
 
 module.exports = {

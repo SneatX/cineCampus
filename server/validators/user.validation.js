@@ -26,6 +26,10 @@ exports.newUserValidation = () => {
             .notEmpty()
             .isNumeric()
             .withMessage('El numero de telefono no es valido'),
+        body('pass')
+            .notEmpty()
+            .isStrongPassword()
+            .withMessage('Debe ingresar una contraseña segura'),
         query().custom((value, { req }) => {
             if (Object.keys(req.query).length > 0) {
                 throw new Error('No se envia nada en la query');

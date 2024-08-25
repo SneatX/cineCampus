@@ -23,7 +23,7 @@ async function nuevoUsuario(req, res) {
     if (!errors.isEmpty())
         return res.status(400).json({ errors: errors.array() });
 
-    let { nombre, apellido, nick, email, telefono, id_tarjeta, admin } =
+    let { nombre, apellido, nick, email, telefono, id_tarjeta, admin, pass } =
         req.body;
 
     let clientesDto = new ClientesDto();
@@ -99,7 +99,8 @@ async function nuevoUsuario(req, res) {
         apellido: apellido,
         nick: nick,
         email: email,
-        telefono: telefono
+        telefono: telefono,
+        pass: pass
     };
 
     let resClient = await clientesCollection.agreggateNewClient(newClient);

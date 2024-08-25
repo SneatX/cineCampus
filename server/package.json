@@ -6,7 +6,7 @@
   "type": "commonjs",
   "scripts": {
     "test": "node --watch --env-file=.env server/main.js ",
-    "dev": "node --watch --env-file=.env app.js ",
+    "dev": "node --watch --env-file=../.env app.js ",
     "styles": "npx prettier --write ./**/*.js"
   },
   "repository": {

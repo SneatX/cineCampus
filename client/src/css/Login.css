@@ -32,6 +32,14 @@ main{
     width: 75%;
 }
 
+.error-message{
+    margin-top: 10px;
+    background-color: rgba(255, 0, 0, 0.5);
+    border-radius: 10px;
+    outline: 2px solid var(--color-white);
+    color: #ffffff9f;
+}
+
 .inputs-container{
     display: flex;
     flex-direction: column;

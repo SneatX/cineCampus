@@ -157,7 +157,7 @@ async function getClientByNick(req, res) {
     let cliente = await clientesCollection.getClienteByNick(nick);
 
     let dtoRes = !cliente ? clientesDto.nonExistentClient(nick) : clientesDto.okTemplate(nick)
-    if (dtoRes.status === 400) return res.status(dtoRes.status).json(dtoRes);
+    if (dtoRes.status === 404) return res.status(dtoRes.status).json(dtoRes);
 
     dtoRes = clientesDto.responseClientDataTemplate(dtoRes, cliente)
     return res.status(dtoRes.status).json(dtoRes);

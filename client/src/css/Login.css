@@ -34,6 +34,7 @@ main{
 
 .error-message{
     margin-top: 10px;
+    padding: 5px;
     background-color: rgba(255, 0, 0, 0.5);
     border-radius: 10px;
     outline: 2px solid var(--color-white);

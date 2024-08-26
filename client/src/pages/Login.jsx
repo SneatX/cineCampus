@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom"
 import Cookies from 'universal-cookie';
 import "../css/Login.css"
@@ -10,6 +10,11 @@ export function Login() {
     const [errorMessage, setErrorMessage] = useState()
     const navigate = useNavigate()
     const cookies = new Cookies()
+
+    useEffect(()=>{
+        let userData = cookies.get('clientData')
+        if(userData) navigate('/menu')
+    }, [])
 
 
     const signIn = async () => {

@@ -144,9 +144,29 @@ async function cambiarRol(nick, nuevoRol) {
     return res;
 }
 
+async function getClientByNick(req, res) {
+    const errors = validationResult(req);
+    if (!errors.isEmpty())
+        return res.status(400).json({ errors: errors.array() });
+
+    let {nick} = req.query;
+
+    let clientesCollection = new ClientesRepository();
+    let clientesDto = new ClientesDto();
+
+    let cliente = await clientesCollection.getClienteByNick(nick);
+
+    let dtoRes = !cliente ? clientesDto.nonExistentClient(nick) : clientesDto.okTemplate(nick)
+    if (dtoRes.status === 400) return res.status(dtoRes.status).json(dtoRes);
+
+    dtoRes = clientesDto.responseClientDataTemplate(dtoRes, cliente)
+    return res.status(dtoRes.status).json(dtoRes);
+}
+
 module.exports = {
     nuevoUsuario,
     getDetallesUsuario,
     getAllUsuarios,
-    cambiarRol
+    cambiarRol,
+    getClientByNick
 };

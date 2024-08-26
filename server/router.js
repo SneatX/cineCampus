@@ -5,11 +5,11 @@ const {
     verPelisCatalogo,
     verInformacionPelicula
 } = require('./controllers/peliculas.controller');
-const { nuevoUsuario } = require('./controllers/clientes.controller');
+const { nuevoUsuario, getClientByNick } = require('./controllers/clientes.controller');
 const { comprarBoleta } = require('./controllers/boletas.controller')
 const { verDisponibilidadAsientos } = require('./controllers/funciones.controller')
 
-const { newUserValidation } = require('./validators/user.validation');
+const { newUserValidation, getClientByNickValidation } = require('./validators/user.validation');
 const { getMovieDataValidation } = require('./validators/peliculas.validation');
 const { buyTicketValidation } = require('./validators/boletas.validation')
 const { getSeatsValidation } = require('./validators/funciones.validation')
@@ -17,6 +17,8 @@ const { getSeatsValidation } = require('./validators/funciones.validation')
 router.get('/prueba', (req, res) => {
     res.send('<h1>get prueba</h1>');
 });
+
+router.get("/getClientsData", getClientByNickValidation(), getClientByNick)
 
 router.post('/caso1', newUserValidation(), nuevoUsuario);
 

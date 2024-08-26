@@ -16,7 +16,7 @@ class ClientesDto {
     nonExistentClient(id){
         return {
             status: 404,
-            message: "Id del cliente no registrado en la base de datos",
+            message: "Cliente no registrado en la base de datos",
             id: id
         }
     }

@@ -1,9 +1,12 @@
 const express = require('express');
+const cors = require("cors")
+
 const path = require('path');
 const app = express();
 const { router } = require('./router');
 
 app.use(express.json());
+app.use(cors())
 
 app.use(
     '/css',

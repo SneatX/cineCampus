@@ -19,10 +19,12 @@ class ClientesRepository extends Connect {
      * @returns Retorna un array con todos los elementos de la coleccion "clientes"
      */
 
+
     async getAllClientes() {
         let res = await this.collection.find({}).toArray();
         return res;
     }
+
 
     async getClienteById(id) {
         let [res] = await this.collection

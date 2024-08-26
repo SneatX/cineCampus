@@ -6,6 +6,13 @@ class ClientesDto {
         };
     }
 
+    responseClientDataTemplate(dto, data){
+        return{
+            status: dto.status,
+            data: data
+        }
+    }
+
     nonExistentClient(id){
         return {
             status: 404,

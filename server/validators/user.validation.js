@@ -1,5 +1,19 @@
 const { body, query } = require('express-validator');
 
+exports.getClientByNickValidation = () =>{
+    return[
+        query('nick')
+        .exists().withMessage('El parámetro "nick" es requerido en la query')
+        .isString().withMessage('El "nick" debe ser un string'),
+        body().custom((value, { req }) => {
+            if (Object.keys(req.body).length > 0) {
+                throw new Error('No se envia nada en el body');
+            }
+            return true;
+        })
+    ]
+}
+
 exports.newUserValidation = () => {
     return [
         body('id_tarjeta')

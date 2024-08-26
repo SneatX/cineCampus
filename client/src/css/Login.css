@@ -6,7 +6,7 @@
     box-sizing: border-box;
 }
 
-body{
+.login-container{
     width: 100vw;
     height: 100vh;
     color: var(--color-white);
@@ -18,7 +18,7 @@ body{
     align-items: center;
 }
 
-main{
+.login-forms{
     /* background: rgb(255, 153, 0); */
     width: 90vw;
     height: 70vh;
@@ -27,12 +27,12 @@ main{
     flex-direction: column;
 }
 
-.title-container{
+.login-title-container{
     text-align: center;
     width: 75%;
 }
 
-.error-message{
+.login-error-message{
     margin-top: 10px;
     padding: 5px;
     background-color: rgba(255, 0, 0, 0.5);
@@ -41,7 +41,7 @@ main{
     color: #ffffff9f;
 }
 
-.inputs-container{
+.login-inputs-container{
     display: flex;
     flex-direction: column;
     width: 80%;
@@ -49,18 +49,18 @@ main{
     margin-top: 35px;
 }
 
-input{
+.login-input{
     background-color: var(--color-gray);
     height: 50px;
     border-radius: 10px;
     color: var(--color-white);
 }
 
-input::placeholder {
+.login-input::placeholder {
     color: #aaaaaa;
 }
 
-.buttons-container{
+.login-buttons-container{
     margin-top: 35px;
     display: flex;
     flex-direction: column;
@@ -68,7 +68,7 @@ input::placeholder {
     gap: 20px;
 }
 
-button{
+.login-button{
     background-color: var(--color-red);
     color: var(--color-white);
     font-size: 1.2em;

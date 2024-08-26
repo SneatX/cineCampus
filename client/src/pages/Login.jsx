@@ -34,34 +34,39 @@ export function Login() {
     };
 
     return (
-        <main>
-            <section className="title-container">
-                <h1>Sign in</h1>
-                <p>Enter your cineCampus nickname and password</p>
-                {
-                    errorMessage != null && (
-                        <p className="error-message">{errorMessage}</p>
-                    )
-                }
-            </section>
-            <section className="inputs-container">
+        <main className="login-container">
+            <div className="login-forms">
+                <section className="login-title-container">
+                    <h1>Sign in</h1>
+                    <p>Enter your cineCampus nickname and password</p>
+                    {
+                        errorMessage != null && (
+                            <p className="login-error-message">{errorMessage}</p>
+                        )
+                    }
+                </section>
+                <section className="login-inputs-container">
 
-                <input
-                    type="text"
-                    placeholder="Username"
-                    onChange={(e) => setUsername(e.target.value)} />
+                    <input
+                        className="login-input"
+                        type="text"
+                        placeholder="Username"
+                        onChange={(e) => setUsername(e.target.value)} />
 
-                <input
-                    type="password"
-                    placeholder="password"
-                    onChange={(e) => setPassword(e.target.value)} />
+                    <input
+                        className="login-input"
+                        type="password"
+                        placeholder="password"
+                        onChange={(e) => setPassword(e.target.value)} />
 
-            </section>
-            <section className="buttons-container">
-                <button onClick={signIn}>Sign in</button>
-                <Link className="signup-button">Sign up</Link>
-            </section>
+                </section>
+                <section className="login-buttons-container">
+                    <button  className="login-button" onClick={signIn}>Sign in</button>
+                    <Link className="signup-button">Sign up</Link>
+                </section>
+            </div>
         </main>
+
     )
 
 }

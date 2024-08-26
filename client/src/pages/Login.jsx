@@ -6,11 +6,22 @@ export function Login() {
 
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const [errorMessage, setErrorMessage] = useState("")
 
 
     const signIn = async() => {
-        console.log("Username:", username);
-        console.log("Password:", password);
+        let clientRes
+        try{
+            clientRes = await (await fetch(`http://localhost:3000/getClientsData?nick=${username}`)).json()
+        } catch(err){
+            console.error(err)
+        }
+
+        if(clientRes.status != 200) return setErrorMessage("Incorrect username or password, try again")
+        
+        const {data: clientData} = clientRes
+        if(clientData.pass != password) return setErrorMessage("Incorrect username or password, try again")
+        
     };
 
     return (
@@ -18,6 +29,7 @@ export function Login() {
             <section className="title-container">
                 <h1>Sign in</h1>
                 <p>Enter your cineCampus nickname and password</p>
+                <p>{errorMessage}</p>
             </section>
             <section className="inputs-container">
 

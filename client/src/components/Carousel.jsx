@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import 'swiper/css';
@@ -23,8 +23,6 @@ export function Carousel() {
 
         getMovies();
     }, []);
-
-    console.log(movies)
     return (
         <>
             <Swiper

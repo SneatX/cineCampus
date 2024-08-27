@@ -30,6 +30,7 @@ export function Index(){
             <SearchBar />
             <Subtitle text="Now playing"/>
             <Carousel />
+            <Subtitle text="Coming soon"/>
             <button onClick={logOut}>Log out</button>
         </main>
     )

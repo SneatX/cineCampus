@@ -43,10 +43,12 @@ async function verPelisCatalogo(req, res) {
                 return funcion.fecha_inicio;
             });
             return {
+                id: res._id,
                 titulo: res.titulo,
                 generos: res.generos,
                 duracion: res.duracion,
-                horarios: horarios
+                horarios: horarios,
+                img: res.img
             };
         })
     );

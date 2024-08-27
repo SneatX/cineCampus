@@ -1,0 +1,19 @@
+@import url(../var.css);
+
+.subtitle-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-primary);
+}
+
+.subtitle-text{
+    color: var(--color-white);
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.subtitle-link{
+    color: var(--color-red);
+    text-decoration: none;
+}

@@ -3,6 +3,7 @@ import Cookies from "universal-cookie"
 import { useNavigate } from "react-router-dom"
 import { IndexHeader } from "../components/IndexHeader"
 import { SearchBar } from "../components/SearchBar"
+import { Subtitle } from "../components/Subtitle"
 
 import '../css/pages/Index.css'
 
@@ -26,6 +27,7 @@ export function Index(){
         <main className="index-container">
             <IndexHeader nombre={userData.nombre} apellido={userData.apellido} imgLink={userData.img}></IndexHeader>
             <SearchBar />
+            <Subtitle text="Now playing"/>
             <button onClick={logOut}>Log out</button>
         </main>
     )

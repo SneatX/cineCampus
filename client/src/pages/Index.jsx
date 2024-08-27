@@ -9,8 +9,9 @@ export function Index(){
     const navigate = useNavigate()
     const cookies = new Cookies()
 
+    let userData = cookies.get('clientData')
+
     useEffect(()=>{
-        let userData = cookies.get('clientData')
         if(!userData) navigate('/')
     }, [])
 
@@ -22,7 +23,7 @@ export function Index(){
 
     return(
         <main className="index-container">
-            <IndexHeader></IndexHeader>
+            <IndexHeader nombre={userData.nombre} apellido={userData.apellido} imgLink={userData.img}></IndexHeader>
             <button onClick={logOut}>Log out</button>
         </main>
     )

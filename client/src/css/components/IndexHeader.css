@@ -10,7 +10,7 @@
 
 .indexHeader-profile-container{
     display: grid;
-    grid-template-columns: 1fr 5fr 1fr;
+    grid-template-columns: 1fr 4fr 1fr;
     grid-gap: 10px;
 }
 
@@ -34,12 +34,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px;
+    padding: 7px;
 }
 
 .img-notifications{
     width: 100%;
-    padding: 8px;
+    padding: 9px;
     border-radius: 10px;
-    outline: 1px solid var(--color-gray);
+    outline: 1px solid var(--color-gray-two);
 }

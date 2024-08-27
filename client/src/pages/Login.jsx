@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom"
 import Cookies from 'universal-cookie';
-import "../css/Login.css"
+import "../css/pages/Login.css"
 
 export function Login() {
 

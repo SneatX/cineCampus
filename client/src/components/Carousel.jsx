@@ -28,9 +28,11 @@ export function Carousel() {
     return (
         <>
             <Swiper
-                slidesPerView={3}
-                spaceBetween={30}
-                freeMode={true}
+                slidesPerView={1.7}
+                spaceBetween={0}
+                centeredSlides={true}
+                freeMode={false} //false = auto centred
+                //grabCursor={true}
                 pagination={{
                     clickable: true,
                 }}
@@ -39,9 +41,13 @@ export function Carousel() {
             >
                 {movies.map((movie, index) => (
                     <SwiperSlide key={index} className='swiperSlide'>
-                        <img src={movie.img}  alt={`Imagen ${movie.titulo}`}/>
+                        <img 
+                            className='swiperSlide-img' 
+                            src={movie.img}  
+                            alt={`Imagen ${movie.titulo}`}
+                        />
                         <p className='swiperSlide-title'>{movie.titulo}</p>
-                        <p className='swiperSlide-title'>{movie.generos[0]}</p>
+                        <p className='swiperSlide-genre'>{movie.generos[0]}</p>
                     </SwiperSlide>
                 ))}
 

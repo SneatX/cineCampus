@@ -3,5 +3,6 @@
 .index-container{
     width: 100vw;
     padding: 30px;
+    position: relative;
     background: var(--color-background);
 }

@@ -1,0 +1,21 @@
+@import url(../var.css);
+
+.mySwiper{
+    color: white;
+    height: auto;
+}
+
+.swiperSlide{
+    height: 200px;
+}
+
+.swiper-pagination-bullet{
+    background-color: var(--color-white);
+    opacity: 1;
+}
+
+.swiper-pagination-bullet-active{
+    width: 30px;
+    border-radius: 10px;
+    background-color: var(--color-red);
+}

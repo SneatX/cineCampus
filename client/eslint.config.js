@@ -34,7 +34,8 @@ export default [
         { allowConstantExport: true },
       ],
       "react-hooks/exhaustive-deps": 'off',
-      "react/prop-types": 'off'
+      "react/prop-types": 'off',
+      "react/no-unescaped-entities": 'off'
     },
   },
 ]

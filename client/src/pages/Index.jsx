@@ -16,12 +16,16 @@ export function Index(){
 
     useEffect(()=>{
         if(!userData) navigate('/')
-    }, [])
+    }, [userData])
 
 
     const logOut = ()=>{
         cookies.remove('clientData')
         navigate('/')
+    }
+
+    if(!userData){
+        return <p>Loading...</p>;
     }
 
     return(

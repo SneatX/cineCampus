@@ -48,14 +48,6 @@ export function Carousel() {
                         <p className='swiperSlide-genre'>{movie.generos[0]}</p>
                     </SwiperSlide>
                 ))}
-
-                <SwiperSlide className='swiperSlide'>otra peli </SwiperSlide>
-                <SwiperSlide className='swiperSlide'>otra peli </SwiperSlide>
-                <SwiperSlide className='swiperSlide'>otra peli </SwiperSlide>
-                <SwiperSlide className='swiperSlide'>otra peli </SwiperSlide>
-                <SwiperSlide className='swiperSlide'>otra peli </SwiperSlide>
-                <SwiperSlide className='swiperSlide'>otra peli </SwiperSlide>
-
             </Swiper>
         </>
     );

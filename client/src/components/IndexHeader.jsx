@@ -12,7 +12,7 @@ export function IndexHeader({nombre, apellido, imgLink}) {
                     <b>Let's watch movie together!</b>
                 </div>
                 <div className="indexHeader-notifications">
-                    <img className="img-notifications" src="campana.svg" alt="" />
+                    <img className="img-notifications" src="campana.svg" alt="img campana" />
                 </div>
             </section>
         </main>

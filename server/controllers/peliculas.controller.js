@@ -37,22 +37,31 @@ async function verPelisCatalogo(req, res) {
     let peliculas = await Promise.all(
         idsPelis.map(async (idPeli) => {
             let res = await peliculasCollection.getPeliculaById(idPeli);
-            let horarios =
+            let resHorarios =
                 await funcionesCollection.getFuncionesByPeliculaId(idPeli);
-            horarios = horarios.map((funcion) => {
-                return funcion.fecha_inicio;
+            let horarios = resHorarios.filter((funcion) => {
+                let fechaActual = new Date()
+                if(fechaActual < funcion.fecha_inicio){
+                    console.log(`${funcion.fecha_inicio} > ${fechaActual}`)
+                    return funcion.fecha_inicio
+                }
             });
-            return {
-                id: res._id,
-                titulo: res.titulo,
-                generos: res.generos,
-                duracion: res.duracion,
-                horarios: horarios,
-                img: res.img
-            };
+            if(horarios.length > 0){
+                return {
+                    id: res._id,
+                    titulo: res.titulo,
+                    generos: res.generos,
+                    duracion: res.duracion,
+                    horarios: horarios,
+                    img: res.img
+                };
+            }
         })
     );
 
+    peliculas = peliculas.filter(pelicula => pelicula !== undefined);
+
+    
     data = peliculasDto.catalogoTemplate(peliculas);
     res.status(data.status).json(data);
 }

@@ -100,7 +100,8 @@ async function nuevoUsuario(req, res) {
         nick: nick,
         email: email,
         telefono: telefono,
-        pass: pass
+        pass: pass,
+        img: "defaultProfilePhoto.png",
     };
 
     let resClient = await clientesCollection.agreggateNewClient(newClient);

@@ -5,6 +5,7 @@ import { IndexHeader } from "../components/IndexHeader"
 import { SearchBar } from "../components/SearchBar"
 import { Subtitle } from "../components/Subtitle"
 import { Carousel } from "../components/Carousel"
+import { ComingSoon } from "../components/ComingSoon"
 
 import '../css/pages/Index.css'
 
@@ -35,6 +36,7 @@ export function Index(){
             <Subtitle text="Now playing"/>
             <Carousel />
             <Subtitle text="Coming soon"/>
+            <ComingSoon />
             <button onClick={logOut}>Log out</button>
         </main>
     )

@@ -2,7 +2,7 @@
 
 .index-container{
     width: 100vw;
-    padding: 30px;
+    padding: 30px 30px 90px;
     position: relative;
     background: var(--color-background);
     display: flex;

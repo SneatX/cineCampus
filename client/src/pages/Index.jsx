@@ -39,7 +39,6 @@ export function Index(){
             <Subtitle text="Coming soon"/>
             <ComingSoon />
             <CinemaFooter logOut={logOut}/>
-            <button onClick={logOut}>Log out</button>
         </main>
     )
 }

@@ -5,4 +5,6 @@
     padding: 30px;
     position: relative;
     background: var(--color-background);
+    display: flex;
+    flex-direction: column;
 }

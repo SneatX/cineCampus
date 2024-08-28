@@ -2,19 +2,26 @@
 
 .footer-container{
     color: white;
-    position: relative;
-    left: -30px;
-    right: -30px;
-    width: calc(100% + 60px);
+    position: fixed;
+    bottom: 0;
+    left: 0px;
+    right: 0px;
+    width: calc(100%);
     padding: 30px 20px;
+    z-index: 1000;
+
     display: grid;
     grid-template-columns: repeat(4 ,1fr);
     justify-content: center; /* Centra horizontalmente los elementos hijos */
     align-items: center;
+
     background: linear-gradient(to right, #232323, #161616);
     border-radius: 15px;
+    outline: 1px solid var(--color-white-three);
+
     font-family: var(--font-ternary);
-    color: var(--color-gray-two);
+    color: var(--color-gray-four);
+    font-size: .75em;
 }
 
 .footer-item{
@@ -25,4 +32,5 @@
 
 .footer-item-active{
     color: var(--color-red);
+    font-weight: bold;
 }

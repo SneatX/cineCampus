@@ -42,7 +42,6 @@ async function verPelisCatalogo(req, res) {
             let horarios = resHorarios.filter((funcion) => {
                 let fechaActual = new Date()
                 if(fechaActual < funcion.fecha_inicio){
-                    console.log(`${funcion.fecha_inicio} > ${fechaActual}`)
                     return funcion.fecha_inicio
                 }
             });

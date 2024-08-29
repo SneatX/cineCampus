@@ -16,7 +16,6 @@ export function Carousel() {
     const navegate = useNavigate()
 
     const viewPeli = (idPeli) =>{
-        console.log(idPeli)
         navegate(`/movieDescription/${idPeli}`)
     }
 

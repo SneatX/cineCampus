@@ -4,4 +4,55 @@
     width: 100vw;
     padding: 30px 30px;
     background-color: var(--color-background);
+    color: var(--color-white);
+    font-family: var(--font-primary);
+}
+
+.movieDescription-img{
+    width: calc(100% + 30px);
+    left: -15px;
+    position: relative;
+    aspect-ratio: 16/9;
+    object-fit:cover;
+    object-position: center 25%;
+    border-radius: 25px;
+    margin-top: 30px;
+}
+
+.movieDescription-info{
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.movieDescription-info-text{
+    
+}
+
+.movieDescription-info-title{
+
+}
+
+.movieDescription-info-genres{
+    font-size: .7em;
+}
+
+.movieDescription-trailerButton{
+    cursor: pointer;
+    background-color: var(--color-red);
+    color: var(--color-white);
+
+    height: 30px;
+
+    padding: 0px 10px;
+    border: 0;
+    border-radius: 8px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    font-family: var(--font-ternary);
+    font-size: .7em;
+    gap: 8px;
 }

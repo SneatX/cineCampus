@@ -6,6 +6,34 @@ import { useEffect, useState } from "react"
 
 export function MovieDescription() {
 
+    const cast = [
+        {
+            name: "Leonardo Dicaprio",
+            paper: "Principal character",
+            img: "https://images.mubicdn.net/images/cast_member/2552/cache-207-1524922850/image-w856.jpg"
+        },
+        {
+            name: "Jenifer Aniston",
+            paper: "Secundary character",
+            img: "https://upload.wikimedia.org/wikipedia/commons/1/16/JenniferAnistonHWoFFeb2012.jpg"
+        },
+        {
+            name: "wayne Johnson",
+            paper: "Secundary character",
+            img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Dwayne_Johnson_2014_%28cropped%29.jpg/800px-Dwayne_Johnson_2014_%28cropped%29.jpg"
+        },
+        {
+            name: "wayne Johnson2",
+            paper: "Secundary character",
+            img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Dwayne_Johnson_2014_%28cropped%29.jpg/800px-Dwayne_Johnson_2014_%28cropped%29.jpg"
+        },
+        {
+            name: "wayne Johnson3",
+            paper: "Secundary character",
+            img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Dwayne_Johnson_2014_%28cropped%29.jpg/800px-Dwayne_Johnson_2014_%28cropped%29.jpg"
+        }
+    ]
+
     let [movieData, setMovieData] = useState({})
 
     // let [movieData, setMovieData] = useState({
@@ -27,7 +55,9 @@ export function MovieDescription() {
     useEffect(() => {
         const getMovieData = async () => {
             let res = await fetch(`http://localhost:3000/caso3?id=${idPeli}`)
-            setMovieData(await res.json())
+            res = await res.json()
+            res.cast = cast
+            setMovieData(res)
         }
         getMovieData()
     }, [])
@@ -56,6 +86,24 @@ export function MovieDescription() {
 
             <article className="movieDescription-sipnosis">
                 <p className="movieDescription-sipnosis-text">{movieData.sipnosis}</p>
+            </article>
+
+            <article className="movieDescription-cast">
+                <h1 className="movieDescription-cast-title">Cast</h1>
+                <div className="movieDescription-actors-container">
+                    {
+                        movieData.cast != undefined && movieData.cast.map((actor) => (
+                            <section key={actor.name} className="movieDescription-actor">
+                                <img src={actor.img} className="movieDescription-actor-img" />
+                                <div className="movieDescription-actor-text">
+                                    <p className="movieDescription-actor-name">{actor.name}</p>
+                                    <p className="movieDescription-actor-paper">{actor.paper}</p>
+                                </div>
+                            </section>
+                        ))
+                    }
+                </div>
+
             </article>
 
         </main>

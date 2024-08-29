@@ -65,3 +65,49 @@
 .movieDescription-sipnosis-text{
     font-size: .9em;
 }
+
+.movieDescription-cast{
+    padding-top: 15px;
+}
+
+.movieDescription-cast-title{
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+
+.movieDescription-actors-container{
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-auto-flow: column;
+    overflow-x: scroll;
+}
+
+.movieDescription-actor{
+    width: 130px;
+    display: grid;
+    grid-template-columns: 50px 1fr;
+}
+
+.movieDescription-actor-img{
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+.movieDescription-actor-text{
+    font-family: var(--font-ternary);
+    font-size: .5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 5px;
+}
+
+.movieDescription-actor-name{
+    
+}
+
+.movieDescription-actor-paper{
+    font-weight: lighter;
+}

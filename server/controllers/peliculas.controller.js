@@ -65,6 +65,20 @@ async function verPelisCatalogo(req, res) {
     res.status(data.status).json(data);
 }
 
+async function funcionesByMovie(req, res){
+    try{
+        let funcionesCollection = new FuncionesRepository();
+        let idPelicula = req.query.id
+    
+        let funciones = await funcionesCollection.getFuncionesByPeliculaId(idPelicula)
+        
+        res.status(200).json(funciones)
+    } catch(err){
+        console.log(err)
+    }
+
+}
+
 /**
  * Obtiene la información detallada de una película específica.
  *
@@ -108,5 +122,6 @@ async function verInformacionPelicula(req, res) {
 
 module.exports = {
     verPelisCatalogo,
-    verInformacionPelicula
+    verInformacionPelicula,
+    funcionesByMovie
 };

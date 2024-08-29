@@ -1,0 +1,20 @@
+@import url(../var.css);
+
+.returnHeaderPayments-container{
+    display: grid;
+    grid-template-columns: 1fr 6fr 1fr;
+    color: var(--color-white-two);
+    font-family: var(--font-primary);
+    font-size: 1.3em;
+    font-weight: 500;
+}
+
+.returnHeaderPayments-container > *{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.returnHeaderPayments-icon{
+    width: 100%;
+}

@@ -128,28 +128,20 @@ export function ChooseSeat() {
         );
     };
 
-    const buyTickets = async() =>{
-        const url = "http://localhost:3000/caso4"
-        for(let seat of selectedSeats){
-            let object = {
-                idFuncion: selectedFunction._id,
-                idCliente: userData._id,
-                asiento: seat,
-                pago: true
-            }
-            let res = await fetch(url, {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json', // Indica que el cuerpo de la solicitud es JSON
-                },
-                body: JSON.stringify(object)
-            })
-            if (!res.ok) {
-                throw new Error(`HTTP error! Status: ${res.status}`);
-            }
-            const result = await res.json();
-            console.log('Success:', result);
+    const goToPayments = () =>{
+        let object = {
+            idMovie : idPeli,
+            idFuncion: selectedFunction._id,
+            idCliente: userData._id,
+            seats: selectedSeats,
+            date : selectedDate,
+            hour : selectedTime,
+            price: functions[0].precio
         }
+
+        let quetyObject = encodeURIComponent(JSON.stringify(object))
+
+        navigate(`/payments/${quetyObject}`)
     }
 
     return (
@@ -227,7 +219,7 @@ export function ChooseSeat() {
                     <p className="buyContainer-text-title">Price</p>
                     <p className="buyContainer-text-price">{new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(totalPrice)}</p>
                 </div>
-                <button className="buyContainer-button" onClick={()=>{buyTickets()}}>Buy ticket</button>
+                <button className="buyContainer-button" onClick={()=>{goToPayments()}}>Buy ticket</button>
             </article>
         </main>
     )

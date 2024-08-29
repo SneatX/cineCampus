@@ -70,12 +70,12 @@
     padding-top: 15px;
 }
 
-.movieDescription-cast-title{
+.cast-title{
     font-size: 1.3em;
     margin-bottom: 15px;
 }
 
-.movieDescription-actors-container{
+.actors-container{
     display: grid;
     grid-template-rows: 1fr;
     grid-auto-flow: column;
@@ -88,14 +88,14 @@
     grid-template-columns: 50px 1fr;
 }
 
-.movieDescription-actor-img{
+.actor-img{
     width: 100%;
     aspect-ratio: 1/1;
     object-fit: cover;
     border-radius: 100%;
 }
 
-.movieDescription-actor-text{
+.actor-text{
     font-family: var(--font-ternary);
     font-size: .5em;
     display: flex;
@@ -104,10 +104,65 @@
     margin-left: 5px;
 }
 
-.movieDescription-actor-name{
+.actor-name{
     
 }
 
-.movieDescription-actor-paper{
+.actor-paper{
     font-weight: lighter;
+}
+
+.movieDescription-cinema{
+
+}
+
+.cinema-title{
+    font-size: 1.3em;
+    padding-top: 25px;
+}
+
+.cinemas-items-container{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 20px;
+}
+
+.cinemas-item{
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--color-gray-three);
+    border-radius: 15px;
+}
+
+.cinemas-item-selected{
+    outline: 3px solid var(--color-red);
+}
+
+.cinemas-item-text{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 15px 20px;
+}
+
+.cinemas-item-name{
+    font-weight: bold;
+}
+
+.cinemas-item-subname{
+    font-weight: lighter;
+    font-size: .9em;
+}
+
+.cinemas-item-img-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 20px;
+    width: 78px;
+}
+
+.cinemas-item-img{
+    width: 110%;
 }

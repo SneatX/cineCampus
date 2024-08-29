@@ -89,21 +89,44 @@ export function MovieDescription() {
             </article>
 
             <article className="movieDescription-cast">
-                <h1 className="movieDescription-cast-title">Cast</h1>
-                <div className="movieDescription-actors-container">
+                <h1 className="cast-title">Cast</h1>
+                <div className="actors-container">
                     {
                         movieData.cast != undefined && movieData.cast.map((actor) => (
                             <section key={actor.name} className="movieDescription-actor">
-                                <img src={actor.img} className="movieDescription-actor-img" />
-                                <div className="movieDescription-actor-text">
-                                    <p className="movieDescription-actor-name">{actor.name}</p>
-                                    <p className="movieDescription-actor-paper">{actor.paper}</p>
+                                <img src={actor.img} className="actor-img" />
+                                <div className="actor-text">
+                                    <p className="actor-name">{actor.name}</p>
+                                    <p className="actor-paper">{actor.paper}</p>
                                 </div>
                             </section>
                         ))
                     }
                 </div>
+            </article>
 
+            <article className="movieDescription-cinema">
+                <h1 className="cinema-title">Cinema</h1>
+                <section className="cinemas-items-container">
+                    <div className="cinemas-item cinemas-item-selected">
+                        <div className="cinemas-item-text">
+                            <p className="cinemas-item-name">Atrium Cinemas</p>
+                            <p className="cinemas-item-subname">Staff Lines, Saddar, Karachi</p>
+                        </div>
+                        <div className="cinemas-item-img-container">
+                            <img className="cinemas-item-img" src="/cinema1.svg"/>
+                        </div>
+                    </div>
+                    <div className="cinemas-item">
+                        <div className="cinemas-item-text">
+                            <p className="cinemas-item-name">Neuplex</p>
+                            <p className="cinemas-item-subname">Khayaban - e Shaheen, Dha Phase 8</p>
+                        </div>
+                        <div className="cinemas-item-img-container">
+                            <img className="cinemas-item-img" src="/cinema2.svg"/>
+                        </div>
+                    </div>
+                </section>
             </article>
 
         </main>

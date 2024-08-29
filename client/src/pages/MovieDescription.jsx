@@ -3,8 +3,34 @@ import { ReturnHeader } from "../components/ReturnHeader"
 
 import '../css/pages/MovieDescription.css'
 import { useEffect, useState } from "react"
+import Cookies from "universal-cookie"
 
 export function MovieDescription() {
+
+    const navigate = useNavigate()
+    const cookies = new Cookies()
+
+    let userData = cookies.get('clientData')
+
+    useEffect(()=>{
+        if(!userData) navigate('/')
+    }, [userData])
+
+    let [movieData, setMovieData] = useState({})
+
+    // let [movieData, setMovieData] = useState({
+    //     _id: ""
+    //     titulo: "",
+    //     generos: [],
+    //     duracion: "",
+    //     sipnosis: "",
+    //     img: ""
+    // })
+    const { idPeli } = useParams()
+
+    const returnFunction = () => {
+        navigate('/menu')
+    }
 
     const cast = [
         {
@@ -33,24 +59,6 @@ export function MovieDescription() {
             img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Dwayne_Johnson_2014_%28cropped%29.jpg/800px-Dwayne_Johnson_2014_%28cropped%29.jpg"
         }
     ]
-
-    let [movieData, setMovieData] = useState({})
-
-    // let [movieData, setMovieData] = useState({
-    //     _id: ""
-    //     titulo: "",
-    //     generos: [],
-    //     duracion: "",
-    //     sipnosis: "",
-    //     img: ""
-    // })
-    const { idPeli } = useParams()
-    const navigate = useNavigate()
-
-    const returnFunction = () => {
-        navigate('/menu')
-    }
-
 
     useEffect(() => {
         const getMovieData = async () => {

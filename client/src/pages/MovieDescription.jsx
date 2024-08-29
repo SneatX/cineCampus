@@ -52,8 +52,12 @@ export function MovieDescription() {
                     </svg>
                     <p>Watch Trailer</p>
                 </button>
-
             </article>
+
+            <article className="movieDescription-sipnosis">
+                <p className="movieDescription-sipnosis-text">{movieData.sipnosis}</p>
+            </article>
+
         </main>
     )
 }

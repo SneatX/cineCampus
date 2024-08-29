@@ -56,3 +56,12 @@
     font-size: .7em;
     gap: 8px;
 }
+
+.movieDescription-sipnosis{
+    padding-top: 15px;
+    text-align: left;
+}
+
+.movieDescription-sipnosis-text{
+    font-size: .9em;
+}

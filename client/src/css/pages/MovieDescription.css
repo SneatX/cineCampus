@@ -1,0 +1,7 @@
+@import url(../var.css);
+
+.movieDescription-container{
+    width: 100vw;
+    padding: 30px 30px;
+    background-color: var(--color-background);
+}

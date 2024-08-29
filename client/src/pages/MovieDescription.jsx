@@ -11,12 +11,12 @@ export function MovieDescription() {
     const cookies = new Cookies()
 
     let userData = cookies.get('clientData')
+    const { idPeli } = useParams()
+    let [movieData, setMovieData] = useState({})
 
     useEffect(()=>{
         if(!userData) navigate('/')
     }, [userData])
-
-    let [movieData, setMovieData] = useState({})
 
     // let [movieData, setMovieData] = useState({
     //     _id: ""
@@ -26,10 +26,13 @@ export function MovieDescription() {
     //     sipnosis: "",
     //     img: ""
     // })
-    const { idPeli } = useParams()
 
     const returnFunction = () => {
         navigate('/menu')
+    }
+
+    const buySeat = () =>{
+        navigate(`/chooseSeat/${idPeli}`)
     }
 
     const cast = [
@@ -138,11 +141,10 @@ export function MovieDescription() {
             </article>
 
             <article className="movieDescription-bookButton">
-                <button className="bookButton">
+                <button className="bookButton" onClick={()=>{buySeat()}}>
                     Book Now
                 </button>
             </article>
-
         </main>
     )
 }

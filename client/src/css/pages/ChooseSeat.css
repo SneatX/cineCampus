@@ -1,0 +1,249 @@
+@import url(../var.css);
+
+.chooseSeat-container {
+    background: var(--color-background);
+    padding: 30px 10px;
+    color: var(--color-white);
+    font-family: var(--font-primary);
+    height: 100vh;
+}
+
+.chooseSeat-welcome {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 30px;
+}
+
+.chooseSeat-welcome-curvedImg {
+    width: 90%;
+}
+
+.chooseSeat-welcome-text {
+    color: var(--color-white);
+    position: relative;
+    top: -30px;
+}
+
+
+.asientos {
+    padding: 0 15px;
+}
+
+.asientos__normal {
+    margin-bottom: 30px !important;
+}
+
+.asientos__normal,
+.asientos__preferenciales {
+    display: flex;
+    gap: 7px;
+    margin: 15px 0;
+    flex-direction: column;
+    align-items: center;
+}
+
+.asientos__normal div,
+.asientos__preferenciales div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.asientos__lista input[type="checkbox"],
+.asientos__preferenciales input[type="checkbox"] {
+    display: none;
+}
+
+.asientos__lista input[type="checkbox"]+label:before,
+.asientos__preferenciales input[type="checkbox"]+label:before {
+    content: "";
+    float: left;
+    margin: 0.5em 0.5em 0 0;
+    font-family: "Inter_18pt-Regular";
+    outline: none;
+    border: none;
+    width: 32px;
+    height: 32px;
+    margin: 0 3.5px;
+    background: #323232;
+    border-radius: 6px;
+}
+
+.asientos__lista input[type="checkbox"]:checked+label:after,
+.asientos__preferenciales input[type="checkbox"]:checked+label:after {
+    content: attr(data-place);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    font-family: "Inter_18pt-Regular";
+    align-items: center;
+    float: left;
+    background: #FE0000;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    margin-left: -2.2em;
+}
+
+.asientos__lista input[type="checkbox"]+label:hover::before,
+.asientos__preferenciales input[type="checkbox"]+label:hover::before {
+    background: #FE0000;
+}
+
+.asientos__lista input[type="checkbox"]+label:hover::after,
+.asientos__preferenciales input[type="checkbox"]+label:hover::after {
+    cursor: pointer;
+    content: attr(data-place);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    font-family: "Inter_18pt-Regular";
+    align-items: center;
+    float: left;
+    background: #FE0000;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    margin-left: -2.2em;
+}
+
+.asientos__lista input[type="checkbox"].reserved+label:before,
+.asientos__preferenciales input[type="checkbox"].reserved+label:before {
+    content: "";
+    background: #CECECE;
+}
+
+.asientos__lista input[type="checkbox"].reserved+label:hover::after,
+.asientos__preferenciales input[type="checkbox"].reserved+label:hover::after {
+    content: attr(data-place);
+    background: #CECECE;
+    cursor: default;
+}
+
+.chooseSeat-seatOptions{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 40px;
+}
+
+.seatOptions-item{
+    display: flex;
+    font-size: .8em;
+    font-family: var(--font-secundary);
+    gap: 10px;
+}
+
+.chooseSeat-dateSelection{
+    overflow-x: scroll;
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.chooseSeat-dateSelection > button{
+    cursor: pointer;
+    background: #F8F5F5;
+    color: #2F2F2F;
+
+    border: 0;
+    height: 85px;
+    width: 60px;
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.selected{
+    background-color: var(--color-red) !important;
+    color: var(--color-white) !important;
+}
+
+.dateSelection-day{
+    color: #969696;
+    font-weight: 500;
+    font-size: 1.2em;
+    font-family: var(--font-secundary);
+}
+
+.dateSelection-hour{
+    color: #2F2F2F;
+    font-weight: bold;
+    font-size: 1.5em;
+    font-family: var(--font-secundary);
+}
+
+.chooseSeat-hourSelection{
+    overflow-x: scroll;
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.chooseSeat-hourSelection{
+    overflow-x: scroll;
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.chooseSeat-hourSelection > button{
+    cursor: pointer;
+    background: #F8F5F5;
+    color: #2F2F2F;
+
+    border: 0;
+    height: 80px;
+    width: 100px;
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.hourSelection-hour{
+    font-weight: bold;
+    font-size: 1.5em;
+    font-family: var(--font-secundary);
+}
+
+.hourSelection-price{
+    color: #969696;
+}
+
+.chooseSeat-buyContainer{
+    display: flex;
+    justify-content: space-between;
+    margin: 100px 20px;
+}
+
+.buyContainer-text-title{
+    font-size: 1.1em;
+}
+
+.buyContainer-text-price{
+    font-size: 1.2em;
+}
+
+.buyContainer-button{
+    cursor: pointer;
+    width: 240px;
+    height: 60px;
+    background: var(--color-red);
+    color: var(--color-white);
+    border: 0;
+    border-radius: 10px;
+    font-family: var(--font-secundary);
+    font-weight: 600;
+    font-size: 1.05em;
+}
+

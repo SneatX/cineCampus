@@ -1,4 +1,3 @@
-
 import '../css/components/ReturnHeader.css'
 
 export function ReturnHeader({ title, returnFunction }) {

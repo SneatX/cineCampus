@@ -1,5 +1,9 @@
 @import url(../var.css);
 
+body{
+    background-color: var(--color-background);
+}
+
 .index-container{
     width: 100vw;
     padding: 30px 30px 90px;

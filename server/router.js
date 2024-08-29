@@ -1,10 +1,7 @@
 const router = require('express').Router();
 const path = require('path');
 
-const {
-    verPelisCatalogo,
-    verInformacionPelicula
-} = require('./controllers/peliculas.controller');
+const { verPelisCatalogo, verInformacionPelicula, funcionesByMovie } = require('./controllers/peliculas.controller');
 const { nuevoUsuario, getClientByNick } = require('./controllers/clientes.controller');
 const { comprarBoleta } = require('./controllers/boletas.controller')
 const { verDisponibilidadAsientos } = require('./controllers/funciones.controller')
@@ -19,6 +16,9 @@ router.get('/prueba', (req, res) => {
 });
 
 router.get("/getClientsData", getClientByNickValidation(), getClientByNick)
+
+router.get('/getFunctionsByMovie', funcionesByMovie)
+
 
 router.post('/caso1', newUserValidation(), nuevoUsuario);
 

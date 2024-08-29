@@ -18,6 +18,7 @@ export function ChooseSeat() {
     const [selectedSeats, setSelectedSeats] = useState([]);
     const [reservedSeats, setReservedSeats] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
+    const [selectedFunction, setSelectedFunction] = useState(functions[0]);
 
     const uniqueDates = [...new Set(functions.map(f => format(new Date(f.fecha_inicio), 'yyyy-MM-dd')))];
     const availableTimes = functions
@@ -50,12 +51,12 @@ export function ChooseSeat() {
         }
     };
 
-    console.log("Functions", functions)
-    console.log("selectedDate", selectedDate)
-    console.log("selectedTime", selectedTime)
-    console.log("selectedSeats", selectedSeats)
-    console.log("reservedSeats", reservedSeats)
-    // console.log("totalPrice", totalPrice)
+    // console.log("Functions", functions)
+    // console.log("selectedDate", selectedDate)
+    // console.log("selectedTime", selectedTime)
+    // console.log("selectedSeats", selectedSeats)
+    // console.log("reservedSeats", reservedSeats)
+    // // console.log("totalPrice", totalPrice)
 
     const handleDateChange = (date) => {
         setSelectedDate(date);
@@ -65,18 +66,20 @@ export function ChooseSeat() {
 
     const handleTimeChange = (time) => {
         setSelectedTime(time);
-        const selectedFunction = functions.find(f =>
+        const findSelectedFunction = functions.find(f =>
             format(new Date(f.fecha_inicio), 'yyyy-MM-dd') === selectedDate &&
             format(new Date(f.fecha_inicio), 'HH:mm') === time
         );
-        if (selectedFunction) {
-            setReservedSeats(selectedFunction.asientosOcupados);
+        if (findSelectedFunction) {
+            setReservedSeats(findSelectedFunction.asientosOcupados);
+            setSelectedFunction(findSelectedFunction);
         }
         setSelectedSeats([]);
     };
 
     useEffect(() => {
         calcTotalPrice();
+        if(!selectedFunction) setSelectedFunction(functions[0])
     }, [selectedSeats, functions]);
 
     const calcTotalPrice = () => {
@@ -125,8 +128,28 @@ export function ChooseSeat() {
         );
     };
 
-    const buyTickets = () =>{
-        
+    const buyTickets = async() =>{
+        const url = "http://localhost:3000/caso4"
+        for(let seat of selectedSeats){
+            let object = {
+                idFuncion: selectedFunction._id,
+                idCliente: userData._id,
+                asiento: seat,
+                pago: true
+            }
+            let res = await fetch(url, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json', // Indica que el cuerpo de la solicitud es JSON
+                },
+                body: JSON.stringify(object)
+            })
+            if (!res.ok) {
+                throw new Error(`HTTP error! Status: ${res.status}`);
+            }
+            const result = await res.json();
+            console.log('Success:', result);
+        }
     }
 
     return (
@@ -204,7 +227,7 @@ export function ChooseSeat() {
                     <p className="buyContainer-text-title">Price</p>
                     <p className="buyContainer-text-price">{new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(totalPrice)}</p>
                 </div>
-                <button className="buyContainer-button">Buy ticket</button>
+                <button className="buyContainer-button" onClick={()=>{buyTickets()}}>Buy ticket</button>
             </article>
         </main>
     )

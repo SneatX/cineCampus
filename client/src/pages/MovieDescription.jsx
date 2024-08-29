@@ -129,6 +129,12 @@ export function MovieDescription() {
                 </section>
             </article>
 
+            <article className="movieDescription-bookButton">
+                <button className="bookButton">
+                    Book Now
+                </button>
+            </article>
+
         </main>
     )
 }

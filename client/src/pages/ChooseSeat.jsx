@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import Cookies from "universal-cookie";
 import { format } from "date-fns";
+import MotionNumber from "motion-number";
 
 import { ReturnHeader } from "../components/ReturnHeader";
 import "../css/pages/ChooseSeat.css"
@@ -217,7 +218,12 @@ export function ChooseSeat() {
             <article className="chooseSeat-buyContainer">
                 <div className="buyContainer-text">
                     <p className="buyContainer-text-title">Price</p>
-                    <p className="buyContainer-text-price">{new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(totalPrice)}</p>
+                    <MotionNumber
+                    className="buyContainer-text-price"
+                        value={totalPrice}
+                        format={{ style: 'currency', currency: 'USD' }}
+                        locales="en-US"
+                    />
                 </div>
                 <button className="buyContainer-button" onClick={()=>{goToPayments()}}>Buy ticket</button>
             </article>

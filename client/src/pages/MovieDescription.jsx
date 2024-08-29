@@ -13,6 +13,7 @@ export function MovieDescription() {
     let userData = cookies.get('clientData')
     const { idPeli } = useParams()
     let [movieData, setMovieData] = useState({})
+    let [selectedCinema, setSelectedCinema] = useState(1)
 
     useEffect(()=>{
         if(!userData) navigate('/')
@@ -73,6 +74,10 @@ export function MovieDescription() {
         getMovieData()
     }, [])
 
+    const changeCinema = (cinemaId) => {
+        setSelectedCinema(cinemaId)
+    };
+
     return (
         <main className="movieDescription-container">
             <ReturnHeader title='Cinema Section' returnFunction={returnFunction} />
@@ -119,7 +124,7 @@ export function MovieDescription() {
             <article className="movieDescription-cinema">
                 <h1 className="cinema-title">Cinema</h1>
                 <section className="cinemas-items-container">
-                    <div className="cinemas-item cinemas-item-selected">
+                    <div onClick={()=>{changeCinema(1)}} className={`cinemas-item ${selectedCinema === 1 ? 'cinemas-item-selected' : ''}`}>
                         <div className="cinemas-item-text">
                             <p className="cinemas-item-name">Atrium Cinemas</p>
                             <p className="cinemas-item-subname">Staff Lines, Saddar, Karachi</p>
@@ -128,7 +133,7 @@ export function MovieDescription() {
                             <img className="cinemas-item-img" src="/cinema1.svg"/>
                         </div>
                     </div>
-                    <div className="cinemas-item">
+                    <div onClick={()=>{changeCinema(2)}} className={`cinemas-item ${selectedCinema === 2 ? 'cinemas-item-selected' : ''}`}>
                         <div className="cinemas-item-text">
                             <p className="cinemas-item-name">Neuplex</p>
                             <p className="cinemas-item-subname">Khayaban - e Shaheen, Dha Phase 8</p>

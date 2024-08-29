@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { format, parse } from 'date-fns';
+import MotionNumber from 'motion-number'
 import { ReturnHeaderPayments } from "../components/ReturnHeaderPayments";
 
 import "../css/pages/Payments.css"
@@ -27,7 +28,7 @@ export function Payments(){
         for(let seat of data.seats){
             let object = {
                 idFuncion: data.idFuncion,
-                idCliente: data.userData,
+                idCliente: data.idCliente,
                 asiento: seat,
                 pago: true
             }
@@ -88,7 +89,12 @@ export function Payments(){
                     <hr />
                     <div>
                         <p>REGULAR SEAT</p>
-                        {data.price && <p>{new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(data.price)}</p>}
+                        <MotionNumber
+                            value={data.price}
+                            format={{ style: 'currency', currency: 'COP' }} 
+                            locales="en-US"
+                        />
+
                     </div>
                     <hr />
                     <div>

@@ -40,6 +40,7 @@ export function Carousel() {
                 pagination={{
                     clickable: true,
                 }}
+                loop={true}
                 modules={[FreeMode, Pagination]}
                 className="mySwiper"
             >

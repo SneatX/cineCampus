@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { format, parse } from 'date-fns';
 import MotionNumber from 'motion-number'
 import { ReturnHeaderPayments } from "../components/ReturnHeaderPayments";
+import { CardInput } from "../components/CardInput";
 
 import "../css/pages/Payments.css"
 
@@ -10,7 +11,6 @@ export function Payments(){
     let {arg} = useParams()
     let data = {}
     data = JSON.parse(decodeURIComponent(arg))
-    console.log(data)
 
     let [movie, setMovie] = useState({})
     const navigate = useNavigate()
@@ -74,8 +74,6 @@ export function Payments(){
                         </div>
                     </div>
                 </section>
-
-
             </main>
 
             <section className="payments-pricesContainer">
@@ -94,16 +92,24 @@ export function Payments(){
                             format={{ style: 'currency', currency: 'COP' }} 
                             locales="en-US"
                         />
-
                     </div>
                     <hr />
                     <div>
                         <p>SERCIVE FEE</p>
                         <p>$ 0,00</p>
                     </div>
+                    <hr />
+                    <div>
+                        <p>TOTAL</p>
+                        <MotionNumber
+                            value={data.seats.length * data.price}
+                            format={{ style: 'currency', currency: 'COP' }} 
+                            locales="en-US"
+                        />
+                    </div>
                 </article>
 
-                <button onClick={()=>{buyTickets()}} className="payments-BuyButton">Buy ticket</button>
+                <CardInput totalValue={ data.seats.length * data.price } buyTickets={buyTickets} movie={movie._id}></CardInput>
             </section>
         </>
     )

@@ -5,7 +5,7 @@ import { Index } from "./pages/Index";
 import { MovieDescription } from "./pages/MovieDescription";
 import { ChooseSeat } from "./pages/ChooseSeat";
 import { Payments } from "./pages/Payments";
-
+    
 export function Router() {
     return (
         <Routes>

@@ -10,12 +10,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@stripe/react-stripe-js": "^2.8.0",
+    "@stripe/stripe-js": "^4.4.0",
+    "axios": "^1.7.7",
     "date-fns": "^3.6.0",
     "dotenv": "^16.4.5",
     "motion-number": "^0.1.6",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.1",
+    "stripe": "^16.9.0",
+    "sweetalert2": "^11.12.4",
     "swiper": "^11.1.10",
     "universal-cookie": "^7.2.0"
   },

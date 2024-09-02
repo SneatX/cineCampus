@@ -1,0 +1,118 @@
+@import url(../var.css);
+
+.ticket-container{
+    padding: 30px;
+    font-family: var(--font-ternary);
+}
+
+.ticket-entrance{
+    padding: 30px 30px 10px 30px;
+    margin-top: 50px;
+    background-color: white;
+    border-radius: 20px;
+    position: relative;
+}
+
+.ticket-img{
+    width: 100%;
+    aspect-ratio: 2.5/1;
+    object-fit: cover;
+    object-position: center 25%;
+    border-radius: 15px;
+}
+
+.ticket-info{
+    
+}
+
+.ticket-info > h1{
+    font-size: 22px;
+}
+
+.ticket-info > p{
+    font-size: .9em;
+    color: #787878;
+}
+
+.ticket-info > hr{
+    margin-top: 30px ;
+}
+
+.ticket-cinemaInfo{
+    padding-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ticket-cinemaInfo-text > p{
+    color: #787878;
+    font-weight: bold;
+}
+
+.ticket-cinemaInfo-text > h1{
+    font-size: 22px;
+    text-transform: uppercase;
+}
+
+.ticket-cinemaInfo-imgContainer{
+    width: 20%;
+}
+
+.ticket-cinemaInfo-img{
+    width: 100%;
+}
+
+.ticket-functionInfo-container{
+    margin-top: 20px;
+}
+
+.ticket-functionInfo-box{
+    padding-top: 20px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+.ticket-functionInfo-box-title{
+    color: #787878;
+    font-weight: bold;
+}
+
+.ticket-functionInfo-box-data{
+    font-weight: bold;
+    padding-top: 5px;
+}
+
+.ticket-functionInfo-box-data-idFuncion{
+    font-weight: bold;
+    padding-top: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    max-width: 100px
+}
+
+.dotted-line{
+    width: 100%;
+    height: 2px; /* Grosor de la línea */
+    background: repeating-linear-gradient(
+        to right,
+        gray,
+        gray 10px, /* Longitud de cada guion */
+        transparent 10px,
+        transparent 20px /* Espacio entre guiones */
+    );
+    margin: 20px 0; /* Margen opcional */
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+.ticket-barcode-container{
+    padding-top: 50px;
+}
+
+.ticket-barcode{
+    width: 100%;
+}
+

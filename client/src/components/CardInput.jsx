@@ -8,6 +8,7 @@ import '../css/components/CardInput.css';
 
 export function CardInput({ totalValue, buyTickets, movie }) {
 
+
     const CheckoutForm = () => {
         const stripe = useStripe();
         const elements = useElements();
@@ -26,11 +27,11 @@ export function CardInput({ totalValue, buyTickets, movie }) {
                 try {
                     let res = await axios.post('http://localhost:3000/create-payment-intent', {
                         id,
-                        amount: totalValue,
+                        amount: totalValue * 100, //x 100 porque stripe maneja el dinero en centavos
                         movie
                     });
 
-                    console.log(res)
+                    //console.log(res)
 
                     if (res.data.status !== "succeeded") {
                         Swal.fire({
@@ -41,11 +42,11 @@ export function CardInput({ totalValue, buyTickets, movie }) {
                         });
                     } else {
                         Swal.fire({
-                            title: "Good job!",
-                            text: "You clicked the button!",
+                            title: "successful payment!",
+                            text: "here is your ticket!",
                             icon: "success"
                           });
-                        //buyTickets();
+                        buyTickets();
                     }
 
                 } catch (error) {
@@ -60,8 +61,7 @@ export function CardInput({ totalValue, buyTickets, movie }) {
                 Swal.fire({
                     icon: "error",
                     title: "Payment Error",
-                    text: error.message,
-                    footer: '<a href="#">Why do I have this issue?</a>'
+                    text: error,
                 });
             }
         };

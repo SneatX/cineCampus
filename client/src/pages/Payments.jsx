@@ -44,7 +44,12 @@ export function Payments(){
             }
             const result = await res.json();
             console.log('Success:', result);
+            
+            let params = encodeURIComponent(JSON.stringify(data))
+            navigate(`/ticket/${params}`)
         }
+
+        
     }
 
     useEffect(() => {

@@ -15,7 +15,7 @@ CineCampus es una aplicación de gestión de cine que permite la creación y adm
     - [Salas](#salas)
     - [Boletas](#boletas)
 
-## Estructura de Carpetas
+## Estructura de Carpetas backend
 Este proyecto sigue una estructura modular que facilita la organización y mantenimiento del código. A continuación se describe la estructura de carpetas y su funcionalidad:
 
 ```
@@ -60,7 +60,7 @@ Este proyecto sigue una estructura modular que facilita la organización y mante
 └── README.md
 ```
 
-### Descripción de Carpetas y Archivos
+### Descripción de Carpetas y Archivos backend
 
 - **main**: Este es el punto de acceso principal de la aplicación Node.js. Aquí se inicializa el servidor y se configuran los middlewares necesarios.
 
@@ -73,6 +73,81 @@ Este proyecto sigue una estructura modular que facilita la organización y mante
     - **controller**: Maneja las solicitudes HTTP, recibe datos, llama al servicio correspondiente y devuelve la respuesta adecuada al cliente.
     - **repository**: Maneja la conexión directa a la base de datos, definiendo todas las consultas posibles para esa colección.
     - **service**: Contiene la lógica de negocio y procesamiento de datos, encapsulando la lógica para mantenerla separada de los controladores y repositorios.
+
+## Estructura de Carpetas frontend
+La estructura del frontend está organizada de manera modular para facilitar la reutilización de componentes y el manejo de estilos. Aquí se describe la estructura de carpetas del frontend:
+
+```
+├── node_modules
+├── public
+├── src
+│   ├── components
+│   │   ├── CardInput.jsx
+│   │   ├── Carousel.jsx
+│   │   ├── CinemaFooter.jsx
+│   │   ├── ComingSoon.jsx
+│   │   ├── IndexHeader.jsx
+│   │   ├── ReturnHeader.jsx
+│   │   ├── ReturnHeaderPayments.jsx
+│   │   ├── SearchBar.jsx
+│   │   ├── SeatRow.jsx
+│   │   └── Subtitle.jsx
+│   ├── css
+│   │   ├── components
+│   │   │   ├── CardInput.css
+│   │   │   ├── Carousel.css
+│   │   │   ├── CinemaFooter.css
+│   │   │   ├── ComingSoon.css
+│   │   │   ├── IndexHeader.css
+│   │   │   ├── ReturnHeader.css
+│   │   │   ├── ReturnHeaderPayments.css
+│   │   │   ├── SearchBar.css
+│   │   │   ├── SeatRow.css
+│   │   │   └── Subtitle.css
+│   │   ├── pages
+│   │       ├── ChooseSeat.css
+│   │       ├── Index.css
+│   │       ├── Login.css
+│   │       ├── MovieDescription.css
+│   │       ├── Payments.css
+│   │       └── Ticket.css
+│   ├── pages
+│   │   ├── ChooseSeat.jsx
+│   │   ├── Index.jsx
+│   │   ├── Login.jsx
+│   │   ├── MovieDescription.jsx
+│   │   ├── Payments.jsx
+│   │   └── Ticket.jsx
+│   ├── main.jsx
+│   └── Router.jsx
+├── .gitignore
+├── .eslintrc.js
+├── index.html
+├── package-lock.json
+├── package.json
+└── vite.config.js
+```
+
+### Descripción de Carpetas y Archivos frontend
+
+- **src/components**: Contiene componentes reutilizables como botones, entradas de formulario, encabezados, etc.
+
+- **src/css**: Contiene los archivos CSS organizados según componentes y páginas.
+- **src/pages**: Contiene los componentes de las páginas principales como Login, MovieDescription, Payments, etc.
+- **main.jsx**: Punto de entrada principal de la aplicación React.
+- **Router.jsx**: Configuración de las rutas de la aplicación.
+
+### Separación del Backend y Frontend
+El backend y frontend están separados en dos entornos distintos, cada uno con sus propias dependencias. Para iniciar ambos entornos, es necesario:
+
+#### Instalar dependencias:
+
+- Navegar a la carpeta del backend y ejecutar npm install.
+- Navegar a la carpeta del frontend y ejecutar npm install.
+
+- Iniciar el servidor backend con npm run dev.
+- Iniciar el servidor frontend con npm run dev.
+
 
 ### Ventajas de Usar una Estructura de Carpetas Modular
 
@@ -150,19 +225,33 @@ Este proyecto sigue una estructura modular que facilita la organización y mante
 
 ## Variables de entorno
 
+### Variables mongo
 `
-MONGO_USER = admin (Usuario el con el cual desea ingresar) 
+MONGO_USER = admin
 MONGO_PORT = 12854
-MONGO_PWD = 1878 (Contraseña del usuario, para efectos practicos todos los clientes tienen 1234 de pwd) 
+MONGO_PWD = 1878
 MONGO_HOST = mongodb://
 MONGO_CLUSTER = monorail.proxy.rlwy.net
 MONGO_DB = cineCampus
 `
 
+### Variables Express
 `
 EXPRESS_PORT=3000
 EXPRESS_HOST = localhost
 EXPRESS_STATIC = public
+`
+
+### Variables Vite/react
+`
+VITE_HOST = localhost
+VITE_PORT = 4000
+`
+
+### Variables Stripe
+`
+STRIPE_SECRET_KEY=pk_test_51Pu4z6ENv6lYUGDbgvbG1ckBy06gIe7zaZW3ZNmMUwvh1CbXrpvlIQJ3CFKMiisdUSbn1Xu0gjhqA3mfqnIYFa4s00YfmfapxL
+STRIPE_PUBLISHABLE_KEY=sk_test_51Pu4z6ENv6lYUGDbzYvJhvhvFCExEJcPOeSlH7VC4z6phnvZhnP9XBUSM0c4Yf91wugqPP2Z5dCOTCkkCD4k86rZ00x1wwlVUP
 `
 
 ## Esquema de Base de Datos
